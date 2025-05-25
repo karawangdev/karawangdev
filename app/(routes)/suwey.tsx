@@ -7,10 +7,7 @@ import 'aos/dist/aos.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import Navbar from './components/ui/navbar';
-import Footer from './components/ui/footer';
-import ScrollToTopButton from './components/ui/ScrollToTopButton';
-import InteractiveTerminal from './components/ui/InteractiveTerminal';
+
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,7 +26,10 @@ const theme = createTheme({
     },
 });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout(
+    { children }: {
+        children: React.ReactNode;
+    }) {
     // Initialize AOS
     useEffect(() => {
         AOS.init({
@@ -41,24 +41,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
     return (
         <html lang="en">
-            <head>
-                <meta charSet="utf-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <title>Karawang Dev</title>
-            </head>
             <body className={inter.className}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
-                    <Navbar />
                     <main style={{
                         paddingTop: '70px', // To prevent content from hiding behind fixed navbar
                         minHeight: '100vh'
                     }}>
                         {children}
                     </main>
-                    <Footer />
-                    <ScrollToTopButton />
-                    <InteractiveTerminal />
                 </ThemeProvider>
             </body>
         </html>
