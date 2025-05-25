@@ -57,10 +57,30 @@ export default function EventDetailInfoSection({ event }: { event: any }) {
                                     mb: 3,
                                     fontFamily: montserratFont,
                                     color: '#222222',
-                                    fontSize: { xs: '1.5rem', md: '2rem' }
+                                    fontSize: { xs: '1.5rem', md: '2rem' },
+                                    position: 'relative',
+                                    display: 'inline-block',
+                                    pb: 1.5
                                 }}
                             >
                                 About This Event
+                                {/* Add the CTA-style underline */}
+                                <Box
+                                    component={motion.div}
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: '60%' }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.4 }}
+                                    sx={{
+                                        position: 'absolute',
+                                        height: '3px',
+                                        width: '60%',
+                                        bottom: 0,
+                                        left: '20%',
+                                        background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.5) 50%, rgba(0,147,233,0) 100%)',
+                                        borderRadius: '2px',
+                                    }}
+                                />
                             </Typography>
                         </motion.div>
 
@@ -89,10 +109,30 @@ export default function EventDetailInfoSection({ event }: { event: any }) {
                                     mb: 3,
                                     fontFamily: montserratFont,
                                     color: '#222222',
-                                    fontSize: { xs: '1.25rem', md: '1.5rem' }
+                                    fontSize: { xs: '1.25rem', md: '1.5rem' },
+                                    position: 'relative',
+                                    display: 'inline-block',
+                                    pb: 1.5
                                 }}
                             >
                                 What You Need to Bring
+                                {/* Add the CTA-style underline */}
+                                <Box
+                                    component={motion.div}
+                                    initial={{ width: 0 }}
+                                    whileInView={{ width: '50%' }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.4 }}
+                                    sx={{
+                                        position: 'absolute',
+                                        height: '3px',
+                                        width: '50%',
+                                        bottom: 0,
+                                        left: '25%',
+                                        background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.3) 50%, rgba(0,147,233,0) 100%)',
+                                        borderRadius: '2px',
+                                    }}
+                                />
                             </Typography>
                         </motion.div>
 
@@ -117,7 +157,11 @@ export default function EventDetailInfoSection({ event }: { event: any }) {
                     </Grid>
 
                     <Grid item xs={12} md={5}>
-                        <motion.div variants={itemVariants}>
+                        <motion.div
+                            variants={itemVariants}
+                            whileHover={{ y: -8 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                        >
                             <Paper
                                 elevation={0}
                                 sx={{
@@ -125,7 +169,12 @@ export default function EventDetailInfoSection({ event }: { event: any }) {
                                     borderRadius: 4,
                                     boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
                                     background: 'linear-gradient(45deg, rgba(0,147,233,0.03) 0%, rgba(128,208,199,0.03) 100%)',
-                                    border: '1px solid rgba(0,147,233,0.1)'
+                                    border: '1px solid rgba(0,147,233,0.1)',
+                                    transition: 'all 0.3s',
+                                    '&:hover': {
+                                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                                        background: 'linear-gradient(45deg, rgba(0,147,233,0.05) 0%, rgba(128,208,199,0.05) 100%)',
+                                    }
                                 }}
                             >
                                 <Typography
@@ -138,11 +187,30 @@ export default function EventDetailInfoSection({ event }: { event: any }) {
                                         color: '#222222',
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: 1
+                                        gap: 1,
+                                        position: 'relative',
+                                        pb: 1.5
                                     }}
                                 >
                                     <ScheduleOutlined sx={{ color: '#0093E9' }} />
                                     Event Agenda
+                                    {/* Add the CTA-style underline */}
+                                    <Box
+                                        component={motion.div}
+                                        initial={{ width: 0 }}
+                                        whileInView={{ width: '60%' }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.4 }}
+                                        sx={{
+                                            position: 'absolute',
+                                            height: '2px',
+                                            width: '60%',
+                                            bottom: 0,
+                                            left: '20%',
+                                            background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.3) 50%, rgba(0,147,233,0) 100%)',
+                                            borderRadius: '2px',
+                                        }}
+                                    />
                                 </Typography>
 
                                 <Divider sx={{ mb: 3 }} />

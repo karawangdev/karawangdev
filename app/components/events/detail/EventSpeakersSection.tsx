@@ -2,6 +2,9 @@
 
 import { Box, Container, Typography, Grid, Card, CardContent, CardMedia, Avatar } from '@mui/material';
 import { motion } from 'framer-motion';
+import CountUp from 'react-countup';
+import { useRef } from 'react';
+import { useInView } from 'framer-motion';
 
 // Define Montserrat font
 const montserratFont = 'Montserrat, sans-serif';
@@ -34,6 +37,9 @@ export default function EventSpeakersSection({ speakers }: { speakers: any[] }) 
     // If no speakers, don't render the section
     if (!speakers || speakers.length === 0) return null;
 
+    const sectionRef = useRef(null);
+    const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
     return (
         <Box
             component={motion.section}
@@ -41,6 +47,7 @@ export default function EventSpeakersSection({ speakers }: { speakers: any[] }) 
             whileInView="visible"
             viewport={{ once: true }}
             variants={containerVariants}
+            ref={sectionRef}
             sx={{
                 py: 10,
                 bgcolor: '#f8f9fa',
@@ -71,10 +78,33 @@ export default function EventSpeakersSection({ speakers }: { speakers: any[] }) 
                             mb: 2,
                             fontFamily: montserratFont,
                             color: '#222222',
-                            fontSize: { xs: '1.75rem', md: '2.5rem' }
+                            fontSize: { xs: '1.75rem', md: '2.5rem' },
+                            position: 'relative',
+                            display: 'inline-block',
+                            pb: 1.5,
+                            mx: 'auto',
+                            width: '100%',
+                            textAlign: 'center'
                         }}
                     >
                         Meet Our Speakers
+                        {/* Add the CTA-style underline */}
+                        <Box
+                            component={motion.div}
+                            initial={{ width: 0 }}
+                            whileInView={{ width: '200px' }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4 }}
+                            sx={{
+                                position: 'absolute',
+                                height: '4px',
+                                width: '200px',
+                                bottom: 0,
+                                left: 'calc(50% - 100px)',
+                                background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.5) 50%, rgba(0,147,233,0) 100%)',
+                                borderRadius: '2px',
+                            }}
+                        />
                     </Typography>
                 </motion.div>
 
@@ -101,7 +131,8 @@ export default function EventSpeakersSection({ speakers }: { speakers: any[] }) 
                         <Grid item xs={12} sm={6} md={4} key={index}>
                             <motion.div
                                 variants={itemVariants}
-                                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                                whileHover={{ y: -10 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 15 }}
                             >
                                 <Card
                                     elevation={0}
@@ -112,9 +143,9 @@ export default function EventSpeakersSection({ speakers }: { speakers: any[] }) 
                                         borderRadius: 4,
                                         overflow: 'hidden',
                                         boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                                        transition: 'all 0.3s',
+                                        transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                                         '&:hover': {
-                                            boxShadow: '0 6px 25px rgba(0,0,0,0.12)',
+                                            boxShadow: '0 10px 30px rgba(0,0,0,0.12)',
                                         },
                                         background: 'white'
                                     }}
@@ -142,22 +173,44 @@ export default function EventSpeakersSection({ speakers }: { speakers: any[] }) 
                                             sx={{
                                                 fontFamily: montserratFont,
                                                 fontSize: '1.25rem',
-                                                mb: 0.5
+                                                mb: 0.5,
+                                                position: 'relative',
+                                                display: 'inline-block',
+                                                pb: 1.5,
+                                                width: '100%'
                                             }}
                                         >
                                             {speaker.name}
+                                            {/* Add the CTA-style underline */}
+                                            <Box
+                                                component={motion.div}
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: '50%' }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.4 }}
+                                                sx={{
+                                                    position: 'absolute',
+                                                    height: '3px',
+                                                    width: '50%',
+                                                    bottom: 0,
+                                                    left: '25%',
+                                                    background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.3) 50%, rgba(0,147,233,0) 100%)',
+                                                    borderRadius: '2px',
+                                                }}
+                                            />
                                         </Typography>
 
                                         <Typography
                                             variant="subtitle1"
                                             align="center"
-                                            color="primary"
                                             sx={{
                                                 fontFamily: montserratFont,
                                                 fontSize: '0.9rem',
                                                 fontWeight: 600,
                                                 mb: 0.5,
-                                                color: '#0093E9'
+                                                background: 'linear-gradient(45deg, #0093E9 30%, #80D0C7 90%)',
+                                                WebkitBackgroundClip: 'text',
+                                                WebkitTextFillColor: 'transparent',
                                             }}
                                         >
                                             {speaker.role}
@@ -175,6 +228,36 @@ export default function EventSpeakersSection({ speakers }: { speakers: any[] }) 
                                         >
                                             {speaker.company}
                                         </Typography>
+
+                                        {/* Experience badge */}
+                                        {speaker.experience && (
+                                            <Box sx={{ textAlign: 'center', mb: 2 }}>
+                                                <Box
+                                                    sx={{
+                                                        display: 'inline-block',
+                                                        background: 'linear-gradient(45deg, rgba(0,147,233,0.1) 0%, rgba(128,208,199,0.1) 100%)',
+                                                        color: '#0093E9',
+                                                        borderRadius: '8px',
+                                                        padding: '4px 10px',
+                                                        fontSize: '0.75rem',
+                                                        fontWeight: 'bold',
+                                                    }}
+                                                >
+                                                    {isInView ? (
+                                                        <CountUp
+                                                            start={0}
+                                                            end={speaker.experience}
+                                                            duration={2}
+                                                            suffix="+ years experience"
+                                                            useEasing={true}
+                                                            delay={0.4 + index * 0.1}
+                                                        />
+                                                    ) : (
+                                                        `${speaker.experience}+ years experience`
+                                                    )}
+                                                </Box>
+                                            </Box>
+                                        )}
 
                                         <Typography
                                             variant="body2"

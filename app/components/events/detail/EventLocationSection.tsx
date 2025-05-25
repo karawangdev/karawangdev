@@ -56,10 +56,32 @@ export default function EventLocationSection({ location, address }: { location: 
                             mb: 2,
                             fontFamily: montserratFont,
                             color: '#222222',
-                            fontSize: { xs: '1.75rem', md: '2.5rem' }
+                            fontSize: { xs: '1.75rem', md: '2.5rem' },
+                            position: 'relative',
+                            display: 'inline-block',
+                            pb: 1.5,
+                            width: '100%',
+                            textAlign: 'center'
                         }}
                     >
                         Event Location
+                        {/* Add the CTA-style underline */}
+                        <Box
+                            component={motion.div}
+                            initial={{ width: 0 }}
+                            whileInView={{ width: '200px' }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4 }}
+                            sx={{
+                                position: 'absolute',
+                                height: '4px',
+                                width: '200px',
+                                bottom: 0,
+                                left: 'calc(50% - 100px)',
+                                background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.5) 50%, rgba(0,147,233,0) 100%)',
+                                borderRadius: '2px',
+                            }}
+                        />
                     </Typography>
                 </motion.div>
 
@@ -83,7 +105,11 @@ export default function EventLocationSection({ location, address }: { location: 
 
                 <Grid container spacing={4}>
                     <Grid item xs={12} md={5}>
-                        <motion.div variants={itemVariants}>
+                        <motion.div
+                            variants={itemVariants}
+                            whileHover={{ y: -8 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                        >
                             <Paper
                                 elevation={0}
                                 sx={{
@@ -91,11 +117,25 @@ export default function EventLocationSection({ location, address }: { location: 
                                     height: '100%',
                                     borderRadius: 4,
                                     boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                                    background: 'white'
+                                    background: 'white',
+                                    transition: 'all 0.3s',
+                                    '&:hover': {
+                                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                                    }
                                 }}
                             >
                                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-                                    <LocationOn sx={{ color: '#0093E9', fontSize: 28, mr: 1.5 }} />
+                                    <Box
+                                        sx={{
+                                            p: 1.2,
+                                            borderRadius: '12px',
+                                            background: 'linear-gradient(45deg, #0093E9 30%, #80D0C7 90%)',
+                                            boxShadow: '0 4px 15px rgba(0, 147, 233, 0.2)',
+                                            mr: 2
+                                        }}
+                                    >
+                                        <LocationOn sx={{ color: 'white', fontSize: 22 }} />
+                                    </Box>
                                     <Typography
                                         variant="h5"
                                         component="h3"
@@ -103,9 +143,28 @@ export default function EventLocationSection({ location, address }: { location: 
                                         sx={{
                                             fontFamily: montserratFont,
                                             color: '#222222',
+                                            position: 'relative',
+                                            display: 'inline-block',
+                                            pb: 1,
                                         }}
                                     >
                                         {location}
+                                        <Box
+                                            component={motion.div}
+                                            initial={{ width: 0 }}
+                                            whileInView={{ width: '50%' }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.4 }}
+                                            sx={{
+                                                position: 'absolute',
+                                                height: '2px',
+                                                width: '50%',
+                                                bottom: 0,
+                                                left: '0%',
+                                                background: 'linear-gradient(90deg, rgba(0,147,233,0.3) 0%, rgba(0,147,233,0) 100%)',
+                                                borderRadius: '2px',
+                                            }}
+                                        />
                                     </Typography>
                                 </Box>
 
@@ -179,7 +238,11 @@ export default function EventLocationSection({ location, address }: { location: 
                     </Grid>
 
                     <Grid item xs={12} md={7}>
-                        <motion.div variants={itemVariants}>
+                        <motion.div
+                            variants={itemVariants}
+                            whileHover={{ y: -8 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                        >
                             <Paper
                                 elevation={0}
                                 sx={{
@@ -187,6 +250,10 @@ export default function EventLocationSection({ location, address }: { location: 
                                     overflow: 'hidden',
                                     height: { xs: 300, md: '100%', minHeight: 300 },
                                     boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                                    transition: 'all 0.3s',
+                                    '&:hover': {
+                                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                                    }
                                 }}
                             >
                                 {/* This would be a real map in production */}
@@ -194,7 +261,7 @@ export default function EventLocationSection({ location, address }: { location: 
                                     sx={{
                                         height: '100%',
                                         width: '100%',
-                                        bgcolor: 'rgba(0,147,233,0.1)',
+                                        background: 'linear-gradient(45deg, rgba(0,147,233,0.05) 0%, rgba(128,208,199,0.05) 100%)',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',

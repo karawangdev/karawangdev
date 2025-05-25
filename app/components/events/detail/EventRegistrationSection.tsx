@@ -93,10 +93,32 @@ export default function EventRegistrationSection({ event }: { event: any }) {
                             mb: 2,
                             fontFamily: montserratFont,
                             color: '#222222',
-                            fontSize: { xs: '1.75rem', md: '2.5rem' }
+                            fontSize: { xs: '1.75rem', md: '2.5rem' },
+                            position: 'relative',
+                            display: 'inline-block',
+                            pb: 1.5,
+                            width: '100%',
+                            textAlign: 'center'
                         }}
                     >
                         Register for This Event
+                        {/* Add the CTA-style underline */}
+                        <Box
+                            component={motion.div}
+                            initial={{ width: 0 }}
+                            whileInView={{ width: '240px' }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4 }}
+                            sx={{
+                                position: 'absolute',
+                                height: '4px',
+                                width: '240px',
+                                bottom: 0,
+                                left: 'calc(50% - 120px)',
+                                background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.5) 50%, rgba(0,147,233,0) 100%)',
+                                borderRadius: '2px',
+                            }}
+                        />
                     </Typography>
                 </motion.div>
 
@@ -118,14 +140,22 @@ export default function EventRegistrationSection({ event }: { event: any }) {
                     </Typography>
                 </motion.div>
 
-                <motion.div variants={itemVariants}>
+                <motion.div
+                    variants={itemVariants}
+                    whileHover={{ y: -5 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                >
                     <Paper
                         elevation={0}
                         sx={{
                             p: 4,
                             borderRadius: 4,
                             boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                            background: 'white'
+                            background: 'white',
+                            transition: 'all 0.3s',
+                            '&:hover': {
+                                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                            }
                         }}
                     >
                         <form onSubmit={handleSubmit}>

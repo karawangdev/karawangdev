@@ -65,10 +65,32 @@ export default function RelatedEventsSection({ relatedEventIds, eventsData }: { 
                             mb: 2,
                             fontFamily: montserratFont,
                             color: '#222222',
-                            fontSize: { xs: '1.75rem', md: '2.5rem' }
+                            fontSize: { xs: '1.75rem', md: '2.5rem' },
+                            position: 'relative',
+                            display: 'inline-block',
+                            pb: 1.5,
+                            width: '100%',
+                            textAlign: 'center'
                         }}
                     >
                         Related Events
+                        {/* Add the CTA-style underline */}
+                        <Box
+                            component={motion.div}
+                            initial={{ width: 0 }}
+                            whileInView={{ width: '200px' }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4 }}
+                            sx={{
+                                position: 'absolute',
+                                height: '4px',
+                                width: '200px',
+                                bottom: 0,
+                                left: 'calc(50% - 100px)',
+                                background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.5) 50%, rgba(0,147,233,0) 100%)',
+                                borderRadius: '2px',
+                            }}
+                        />
                     </Typography>
                 </motion.div>
 
@@ -95,7 +117,8 @@ export default function RelatedEventsSection({ relatedEventIds, eventsData }: { 
                         <Grid item xs={12} md={6} key={event.id}>
                             <motion.div
                                 variants={itemVariants}
-                                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                                whileHover={{ y: -10 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 15 }}
                             >
                                 <Card
                                     elevation={0}
@@ -105,9 +128,9 @@ export default function RelatedEventsSection({ relatedEventIds, eventsData }: { 
                                         borderRadius: 4,
                                         overflow: 'hidden',
                                         boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-                                        transition: 'all 0.3s',
+                                        transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                                         '&:hover': {
-                                            boxShadow: '0 6px 25px rgba(0,0,0,0.12)',
+                                            boxShadow: '0 10px 30px rgba(0,0,0,0.12)',
                                         },
                                         height: '100%'
                                     }}
@@ -177,12 +200,31 @@ export default function RelatedEventsSection({ relatedEventIds, eventsData }: { 
                                                     fontFamily: montserratFont,
                                                     fontSize: '1.1rem',
                                                     mb: 1,
-                                                    lineHeight: 1.3
+                                                    lineHeight: 1.3,
+                                                    position: 'relative',
+                                                    display: 'inline-block',
+                                                    pb: 1.5
                                                 }}
                                             >
                                                 {event.title}
+                                                {/* Add the CTA-style underline */}
+                                                <Box
+                                                    component={motion.div}
+                                                    initial={{ width: 0 }}
+                                                    whileInView={{ width: '100%' }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ duration: 0.4 }}
+                                                    sx={{
+                                                        position: 'absolute',
+                                                        height: '2px',
+                                                        width: '100%',
+                                                        bottom: 0,
+                                                        left: '0%',
+                                                        background: 'linear-gradient(90deg, rgba(0,147,233,0.3) 0%, rgba(0,147,233,0) 100%)',
+                                                        borderRadius: '2px',
+                                                    }}
+                                                />
                                             </Typography>
-
                                             <Typography
                                                 variant="body2"
                                                 color="text.secondary"
@@ -193,73 +235,45 @@ export default function RelatedEventsSection({ relatedEventIds, eventsData }: { 
                                                     lineHeight: 1.5
                                                 }}
                                             >
-                                                {event.shortDescription}
+                                                {event.description}
                                             </Typography>
+                                        </CardContent>
 
-                                            <Box sx={{ mt: 'auto' }}>
+                                        <Box sx={{ p: 3, pt: 0, mt: 'auto' }}>
+                                            <motion.div
+                                                whileHover={{ scale: 1.03 }}
+                                                whileTap={{ scale: 0.98 }}
+                                            >
                                                 <Button
+                                                    fullWidth
+                                                    variant="contained"
                                                     component={Link}
                                                     href={`/events/${event.id}`}
-                                                    variant="outlined"
-                                                    size="small"
                                                     sx={{
-                                                        borderRadius: 2,
-                                                        textTransform: 'none',
                                                         fontFamily: montserratFont,
+                                                        textTransform: 'none',
                                                         fontWeight: 600,
-                                                        borderColor: '#0093E9',
-                                                        color: '#0093E9',
+                                                        borderRadius: 2,
+                                                        py: 1,
+                                                        background: 'linear-gradient(45deg, #0093E9 30%, #80D0C7 90%)',
+                                                        boxShadow: '0 3px 10px rgba(0, 147, 233, 0.3)',
                                                         '&:hover': {
-                                                            borderColor: '#0093E9',
-                                                            backgroundColor: 'rgba(0, 147, 233, 0.05)',
-                                                        }
+                                                            background: 'linear-gradient(45deg, #0093E9 50%, #80D0C7 100%)',
+                                                            boxShadow: '0 5px 15px rgba(0, 147, 233, 0.4)',
+                                                        },
+                                                        transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                                                     }}
                                                 >
                                                     View Details
                                                 </Button>
-                                            </Box>
-                                        </CardContent>
+                                            </motion.div>
+                                        </Box>
                                     </Box>
                                 </Card>
                             </motion.div>
                         </Grid>
                     ))}
                 </Grid>
-
-                <Box sx={{ textAlign: 'center', mt: 6 }}>
-                    <motion.div
-                        variants={itemVariants}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.98 }}
-                        style={{ display: 'inline-block' }}
-                    >
-                        <Button
-                            component={Link}
-                            href="/events"
-                            variant="contained"
-                            size="large"
-                            sx={{
-                                borderRadius: '14px',
-                                py: 1.5,
-                                px: 4,
-                                background: 'linear-gradient(45deg, #0093E9 30%, #80D0C7 90%)',
-                                boxShadow: '0 3px 15px rgba(0, 147, 233, 0.4)',
-                                fontWeight: 600,
-                                letterSpacing: '0.5px',
-                                textTransform: 'none',
-                                fontSize: '1rem',
-                                fontFamily: montserratFont,
-                                '&:hover': {
-                                    background: 'linear-gradient(45deg, #80D0C7 30%, #0093E9 90%)',
-                                    boxShadow: '0 6px 20px rgba(0, 147, 233, 0.5)',
-                                },
-                                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-                            }}
-                        >
-                            Explore All Events
-                        </Button>
-                    </motion.div>
-                </Box>
             </Container>
         </Box>
     );

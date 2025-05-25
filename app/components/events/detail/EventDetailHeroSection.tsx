@@ -141,10 +141,29 @@ export default function EventDetailHeroSection({ event }: { event: any }) {
                                     mb: 2,
                                     fontFamily: montserratFont,
                                     fontSize: { xs: '1.8rem', md: '2.5rem' },
-                                    color: '#222222'
+                                    color: '#222222',
+                                    position: 'relative',
+                                    display: 'inline-block',
+                                    pb: 1.5
                                 }}
                             >
                                 {event.title}
+                                {/* Add the CTA-style underline */}
+                                <Box
+                                    component={motion.div}
+                                    initial={{ width: 0 }}
+                                    animate={{ width: '60%' }}
+                                    transition={{ duration: 0.6, delay: 0.6 }}
+                                    sx={{
+                                        position: 'absolute',
+                                        height: '4px',
+                                        width: '60%',
+                                        bottom: 0,
+                                        left: '20%',
+                                        background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.5) 50%, rgba(0,147,233,0) 100%)',
+                                        borderRadius: '2px',
+                                    }}
+                                />
                             </Typography>
 
                             <Typography
@@ -226,7 +245,20 @@ export default function EventDetailHeroSection({ event }: { event: any }) {
                         <motion.div
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
-                            transition={{ duration: 0.8, delay: 0.4, type: 'spring' }}
+                            transition={{
+                                duration: 0.8,
+                                delay: 0.4,
+                                type: 'spring',
+                                y: {
+                                    repeat: Infinity,
+                                    duration: 3,
+                                    ease: "easeInOut",
+                                    repeatType: "reverse"
+                                }
+                            }}
+                            animate={{
+                                y: [0, -5, 0]
+                            }}
                         >
                             <Box
                                 sx={{
