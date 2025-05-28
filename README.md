@@ -1,51 +1,231 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 KarawangDev - Komunitas Developer Karawang
 
-## Getting Started
+<div align="center">
+  <img src="public/logo.jpg" alt="KarawangDev Logo" width="200" height="200" style="border-radius: 50%;">
+  
+  [![Website](https://img.shields.io/badge/Website-Live-brightgreen)](https://karawangdev.vercel.app)
+  [![GitHub stars](https://img.shields.io/github/stars/karawangdev/karawangdev?style=social)](https://github.com/karawangdev/karawangdev/stargazers)
+  [![GitHub forks](https://img.shields.io/github/forks/karawangdev/karawangdev?style=social)](https://github.com/karawangdev/karawangdev/network/members)
+  [![Contributors](https://img.shields.io/github/contributors/karawangdev/karawangdev)](https://github.com/karawangdev/karawangdev/graphs/contributors)
+</div>
 
-First, run the development server:
+## 🌟 Tentang KarawangDev
 
+**KarawangDev** adalah komunitas developer di Karawang yang bertujuan untuk:
+- 🤝 **Berkolaborasi** dalam proyek-proyek teknologi
+- 📚 **Berbagi ilmu** melalui workshop dan seminar
+- 🚀 **Mengembangkan skill** programming dan teknologi
+- 🌐 **Membangun ekosistem** teknologi di Karawang
+- 💡 **Menginspirasi** generasi developer masa depan
+
+## ✨ Features Website
+
+- 🏠 **Homepage** dengan hero section dan overview komunitas
+- 👥 **About Page** dengan profil anggota dan visi misi
+- 📅 **Event Management** dengan listing dan detail event
+- 🎯 **Join Page** untuk pendaftaran anggota baru
+- 📱 **Responsive Design** untuk semua perangkat
+- ⚡ **Modern Animations** dengan Framer Motion
+- 🎨 **Glassmorphism UI** dengan Material-UI
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Framework:** Next.js 15 with TypeScript
+- **UI Library:** Material-UI (MUI)
+- **Animations:** Framer Motion
+- **Icons:** Material-UI Icons
+- **Fonts:** Montserrat, Inter
+
+### Development Tools
+- **Language:** TypeScript
+- **Linting:** ESLint
+- **Package Manager:** npm
+- **Version Control:** Git
+
+### Deployment
+- **Hosting:** Vercel
+- **Domain:** Custom domain ready
+- **CI/CD:** GitHub Actions
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ 
+- npm atau yarn
+- Git
+
+### Installation
+
+1. **Clone repository**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/karawangdev/karawangdev.git
+cd karawangdev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies**
+```bash
+npm install
+# atau
+yarn install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Run development server**
+```bash
+npm run dev
+# atau
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **Open browser**
+```
+http://localhost:3000
+```
 
-## Learn More
+### Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Development dengan hot reload
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Development dengan Turbopack (faster)
+npm run dev:turbo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Build untuk production
+npm run build
 
-## Deploy on Vercel
+# Start production server
+npm run start
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Linting
+npm run lint
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-- 👋 Hi, I’m @karawangdev
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
+## 📂 Project Structure
 
-<!---
-karawangdev/karawangdev is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
->>>>>>> 6f1ab523e12cca342c17c93fe05ab9274e1c9872
+```
+karawangdev/
+├── app/                      # Next.js App Router
+│   ├── (routes)/            # Route groups
+│   │   ├── about/           # About page
+│   │   ├── events/          # Events pages
+│   │   └── join/            # Join page
+│   ├── components/          # React components
+│   │   ├── ui/              # UI components
+│   │   ├── about/           # About page components
+│   │   ├── events/          # Event components
+│   │   └── join/            # Join page components
+│   ├── globals.css          # Global styles
+│   └── layout.tsx           # Root layout
+├── public/                  # Static assets
+│   ├── logo.jpg            # Community logo
+│   ├── events-placeHolder.png
+│   └── speaker-*.png
+├── next.config.ts          # Next.js configuration
+├── package.json            # Dependencies
+├── vercel.json            # Vercel deployment config
+└── README.md              # Documentation
+```
+
+## 🎯 Roadmap
+
+### 🔥 Phase 1 - Foundation (Current)
+- [x] Website design dan development
+- [x] Event management system (frontend)
+- [x] Member registration flow
+- [x] Responsive design
+- [x] SEO optimization
+
+### ⚡ Phase 2 - Backend Integration
+- [ ] Database setup (PostgreSQL/MongoDB)
+- [ ] API development (REST/GraphQL)
+- [ ] User authentication
+- [ ] Event registration system
+- [ ] Admin dashboard
+
+### 🚀 Phase 3 - Advanced Features
+- [ ] Real-time chat
+- [ ] Blog/articles system
+- [ ] Member portfolio showcase
+- [ ] Event live streaming
+- [ ] Mobile app (PWA)
+
+## 🤝 Contributing
+
+Kami sangat terbuka untuk kontribusi! Berikut cara untuk berkontribusi:
+
+### 1. Fork repository
+```bash
+# Fork melalui GitHub UI atau
+gh repo fork karawangdev/karawangdev
+```
+
+### 2. Create feature branch
+```bash
+git checkout -b feature/amazing-feature
+```
+
+### 3. Commit changes
+```bash
+git commit -m "✨ Add amazing feature"
+```
+
+### 4. Push dan create PR
+```bash
+git push origin feature/amazing-feature
+# Buat Pull Request melalui GitHub
+```
+
+### Contribution Guidelines
+- 📝 Gunakan conventional commits
+- 🧪 Tambahkan tests untuk fitur baru
+- 📚 Update dokumentasi jika diperlukan
+- 🎨 Follow coding standards
+- 🔍 Pastikan tidak ada linting errors
+
+## 👨‍💻 Team
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/karawangdev">
+        <img src="https://github.com/karawangdev.png" width="100px;" alt="KarawangDev"/>
+        <br />
+        <sub><b>KarawangDev</b></sub>
+      </a>
+      <br />
+      <sub>Founder & Maintainer</sub>
+    </td>
+    <!-- Tambahkan anggota tim lainnya di sini -->
+  </tr>
+</table>
+
+## 📞 Contact
+
+- 🌐 **Website:** [karawangdev.vercel.app](https://karawangdev.vercel.app)
+- � **Email:** karawangdevs@gmail.com
+- � **Telegram:** [t.me/karawangdev](https://t.me/karawangdev)
+- 🐦 **Twitter:** [@karawangdev](https://twitter.com/karawangdev)
+- � **YouTube:** [KarawangDev Channel](https://youtube.com/@karawangdev)
+
+## � License
+
+Project ini dilisensikan di bawah [MIT License](LICENSE).
+
+## � Acknowledgments
+
+- 💙 Terima kasih kepada seluruh anggota komunitas KarawangDev
+- 🌟 Inspirasi dari komunitas developer Indonesia
+- 🛠️ Built with love using Next.js dan Material-UI
+- 🚀 Deployed dengan Vercel
+
+---
+
+<div align="center">
+  <p>
+    <strong>🚀 Mari bersama membangun ekosistem teknologi di Karawang!</strong>
+  </p>
+  
+  [![GitHub](https://img.shields.io/badge/GitHub-karawangdev-black?style=for-the-badge&logo=github)](https://github.com/karawangdev)
+  [![Website](https://img.shields.io/badge/Website-Live-brightgreen?style=for-the-badge&logo=vercel)](https://karawangdev.vercel.app)
+</div>
