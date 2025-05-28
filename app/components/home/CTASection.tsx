@@ -1,14 +1,14 @@
 'use client';
 
-import { Box, Container, Typography, Button } from '@mui/material';
+import { Box, Container, Typography, Stack, Button } from '@mui/material';
 import Link from 'next/link';
-import { People as PeopleIcon } from '@mui/icons-material';
+import { People as PeopleIcon, Event as EventIcon } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
 // Define Montserrat font
 const montserratFont = 'Montserrat, sans-serif';
 
-export default function CTASection() {
+export default function AboutCtaSection() {
     return (
         <Box
             component={motion.section}
@@ -19,7 +19,7 @@ export default function CTASection() {
             sx={{
                 py: 10,
                 position: 'relative',
-                color: '#333', // Darker text for contrast with lighter background
+                color: '#333',
                 fontFamily: montserratFont,
                 backgroundColor: '#f8fafc',
                 borderTop: '1px solid rgba(0, 147, 233, 0.1)',
@@ -81,12 +81,13 @@ export default function CTASection() {
                             gutterBottom
                             sx={{
                                 fontFamily: montserratFont,
-                                color: '#0056a8', // Darker blue for heading
+                                color: '#0056a8',
                                 position: 'relative',
                                 display: 'inline-block',
+                                fontSize: { xs: '2rem', md: '2.5rem' }
                             }}
                         >
-                            Join Our Community Today
+                            Bergabunglah Dengan Kami
                             <Box
                                 sx={{
                                     position: 'absolute',
@@ -116,48 +117,94 @@ export default function CTASection() {
                                 fontWeight: 500,
                                 lineHeight: 1.5,
                                 maxWidth: 700,
-                                mx: 'auto'
+                                mx: 'auto',
+                                fontSize: { xs: '1.1rem', md: '1.25rem' }
                             }}
                         >
-                            Be part of Karawang's growing tech ecosystem and connect with fellow developers
+                            Bergabunglah dengan kami dalam membangun komunitas developer Karawang dan membentuk masa depan teknologi di wilayah kita
                         </Typography>
                     </motion.div>
 
-                    <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.98 }}
+                    <Stack
+                        direction={{ xs: 'column', sm: 'row' }}
+                        spacing={3}
+                        justifyContent="center"
+                        sx={{ mt: 2 }}
                     >
-                        <Button
-                            variant="contained"
-                            size="large"
-                            component={Link}
-                            href="/join"
-                            startIcon={<PeopleIcon />}
-                            sx={{
-                                borderRadius: '14px',
-                                py: 1.5,
-                                px: 5,
-                                background: 'linear-gradient(135deg, #0093E9 0%, #80D0C7 100%)',
-                                color: 'white',
-                                fontWeight: 600,
-                                letterSpacing: '0.5px',
-                                textTransform: 'none',
-                                fontSize: '1rem',
-                                fontFamily: montserratFont,
-                                boxShadow: '0 4px 15px rgba(0, 147, 233, 0.2)',
-                                '&:hover': {
-                                    boxShadow: '0 6px 20px rgba(0, 147, 233, 0.3)',
-                                },
-                                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-                            }}
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.98 }}
                         >
-                            Become a Member
-                        </Button>
-                    </motion.div>
+                            <Button
+                                variant="contained"
+                                size="large"
+                                component={Link}
+                                href="/join"
+                                startIcon={<PeopleIcon />}
+                                sx={{
+                                    borderRadius: '14px',
+                                    py: 1.5,
+                                    px: 4, // Reduced padding to match content
+                                    minWidth: '200px', // Set minimum width for consistency
+                                    background: 'linear-gradient(135deg, #0093E9 0%, #80D0C7 100%)',
+                                    color: 'white',
+                                    fontWeight: 600,
+                                    letterSpacing: '0.5px',
+                                    textTransform: 'none',
+                                    fontSize: '1rem',
+                                    fontFamily: montserratFont,
+                                    boxShadow: '0 4px 15px rgba(0, 147, 233, 0.2)',
+                                    '&:hover': {
+                                        boxShadow: '0 6px 20px rgba(0, 147, 233, 0.3)',
+                                    },
+                                    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                                }}
+                            >
+                                Gabung Komunitas
+                            </Button>
+                        </motion.div>
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.5 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.98 }}
+                        >
+                            <Button
+                                variant="outlined"
+                                size="large"
+                                component={Link}
+                                href="/events"
+                                startIcon={<EventIcon />}
+                                sx={{
+                                    borderRadius: '14px',
+                                    py: 1.5,
+                                    px: 4, // Same padding as first button
+                                    minWidth: '200px', // Same minimum width
+                                    borderColor: '#0093E9',
+                                    color: '#0093E9',
+                                    fontWeight: 600,
+                                    letterSpacing: '0.5px',
+                                    textTransform: 'none',
+                                    fontSize: '1rem',
+                                    fontFamily: montserratFont,
+                                    '&:hover': {
+                                        borderColor: '#0093E9',
+                                        backgroundColor: 'rgba(0, 147, 233, 0.05)',
+                                        boxShadow: '0 4px 15px rgba(0, 147, 233, 0.1)',
+                                    },
+                                    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                                }}
+                            >
+                                Hadiri Event
+                            </Button>
+                        </motion.div>
+                    </Stack>
                 </Box>
             </Container>
         </Box>

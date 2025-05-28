@@ -2,8 +2,8 @@
 
 import { Box, Container, Typography, Grid, Card, CardContent, CardMedia, Stack, Chip, Button } from '@mui/material';
 import { motion, useInView } from 'framer-motion';
-import { CalendarMonth } from '@mui/icons-material';
-import Image from 'next/image';
+import { CalendarMonth, People } from '@mui/icons-material';
+import { useRouter } from 'next/navigation';
 import CountUp from 'react-countup';
 import { useRef } from 'react';
 import SectionTitle from '../ui/SectionTitle';
@@ -35,49 +35,54 @@ const itemVariants = {
     }
 };
 
-// Sample past events data
+// Sample past events data - updated with proper IDs and image paths
 const pastEvents = [
     {
-        id: 1,
-        title: "JavaScript Fundamentals Workshop",
-        description: "Understanding core concepts and modern JavaScript practices",
-        date: "April 20, 2025",
-        image: "/events/js-workshop.jpg",
+        id: "javascript-fundamentals-workshop",
+        title: "Workshop Dasar JavaScript",
+        description: "Memahami konsep inti dan praktik JavaScript modern",
+        date: "20 April 2025",
+        image: "/events-placeHolder.png",
         attendees: 78,
-        tags: ["Workshop", "JavaScript", "Beginner"]
+        tags: ["Workshop", "JavaScript", "Pemula"]
     },
     {
-        id: 2,
-        title: "Intro to Blockchain Development",
-        description: "Learning the basics of blockchain technology and development",
-        date: "March 5, 2025",
-        image: "/events/blockchain.jpg",
+        id: "blockchain-development-intro",
+        title: "Pengantar Pengembangan Blockchain",
+        description: "Mempelajari dasar-dasar teknologi blockchain dan pengembangan",
+        date: "5 Maret 2025",
+        image: "/events-placeHolder.png",
         attendees: 45,
         tags: ["Workshop", "Blockchain", "Web3"]
     },
     {
-        id: 3,
-        title: "Cloud Computing Conference",
-        description: "Exploring modern cloud architectures and deployment strategies",
-        date: "February 12, 2025",
-        image: "/events/cloud-conference.jpg",
+        id: "cloud-computing-conference",
+        title: "Konferensi Cloud Computing",
+        description: "Mengeksplorasi arsitektur cloud modern dan strategi deployment",
+        date: "12 Februari 2025",
+        image: "/events-placeHolder.png",
         attendees: 120,
-        tags: ["Conference", "Cloud", "DevOps"]
+        tags: ["Konferensi", "Cloud", "DevOps"]
     },
     {
-        id: 4,
-        title: "UI/UX Design Principles",
-        description: "Best practices for creating user-friendly interfaces",
-        date: "January 25, 2025",
-        image: "/events/ux-design.jpg",
+        id: "ui-ux-design-principles",
+        title: "Prinsip Desain UI/UX",
+        description: "Best practices untuk membuat antarmuka yang ramah pengguna",
+        date: "25 Januari 2025",
+        image: "/events-placeHolder.png",
         attendees: 55,
-        tags: ["Workshop", "Design", "UI/UX"]
+        tags: ["Workshop", "Desain", "UI/UX"]
     }
 ];
 
 export default function PastEventsSection() {
+    const router = useRouter();
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
+    const handleEventClick = (eventId: string) => {
+        router.push(`/events/${eventId}`);
+    };
 
     return (
         <Box
@@ -89,9 +94,11 @@ export default function PastEventsSection() {
             ref={sectionRef}
             sx={{
                 py: 10,
-                bgcolor: '#f8f9fa',
-                position: 'relative',
                 fontFamily: montserratFont,
+                backgroundColor: '#f8fafc',
+                minHeight: '100vh',
+                position: 'relative',
+                overflow: 'hidden',
                 '&::before': {
                     content: '""',
                     position: 'absolute',
@@ -106,155 +113,281 @@ export default function PastEventsSection() {
                 }
             }}
         >
-            <Container maxWidth="lg">
+            {/* Decorative elements */}
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: '5%',
+                    right: '5%',
+                    width: '300px',
+                    height: '300px',
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(0,147,233,0.05) 0%, rgba(255,255,255,0) 70%)',
+                    pointerEvents: 'none'
+                }}
+            />
+            <Box
+                sx={{
+                    position: 'absolute',
+                    bottom: '10%',
+                    left: '5%',
+                    width: '250px',
+                    height: '250px',
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(254,107,139,0.06) 0%, rgba(255,255,255,0) 70%)',
+                    pointerEvents: 'none'
+                }}
+            />
+
+            <Container maxWidth="xl">
                 <motion.div variants={itemVariants}>
                     <SectionTitle
-                        title="Past Events"
-                        subtitle="Explore our previous events and the valuable content shared with our community members"
+                        title="Event Sebelumnya"
+                        subtitle="Jelajahi event sebelumnya kami dan konten berharga yang telah dibagikan dengan anggota komunitas"
                     />
                 </motion.div>
 
-                <Grid container spacing={3}>
+                <Grid
+                    container
+                    spacing={3}
+                    sx={{ mt: 2 }}
+                    justifyContent="center"
+                    alignItems="stretch"
+                >
                     {pastEvents.map((event, index) => (
-                        <Grid item xs={12} sm={6} md={3} key={event.id}>
+                        <Grid
+                            item
+                            xs={12}
+                            sm={6}
+                            md={3}
+                            key={event.id}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column'
+                            }}
+                        >
                             <motion.div
                                 variants={itemVariants}
                                 whileHover={{ y: -10 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                                style={{
+                                    height: '100%',
+                                    width: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column'
+                                }}
+                                transition={{ type: 'spring', stiffness: 300 }}
                             >
                                 <Card
                                     elevation={0}
                                     sx={{
-                                        height: '100%',
+                                        width: '280px',
+                                        height: '480px',
                                         display: 'flex',
                                         flexDirection: 'column',
-                                        borderRadius: 3,
+                                        borderRadius: '20px',
                                         overflow: 'hidden',
-                                        boxShadow: '0 4px 15px rgba(0,0,0,0.06)',
-                                        transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                                        border: '1px solid rgba(0, 147, 233, 0.1)',
+                                        backgroundColor: '#ffffff',
+                                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                                        transition: 'all 0.3s ease',
+                                        cursor: 'pointer',
                                         '&:hover': {
-                                            boxShadow: '0 6px 20px rgba(0,0,0,0.1)',
-                                        }
+                                            boxShadow: '0 15px 40px rgba(0, 147, 233, 0.15)',
+                                            transform: 'translateY(-5px)',
+                                            borderColor: 'rgba(0, 147, 233, 0.2)'
+                                        },
+                                        mx: 'auto'
                                     }}
+                                    onClick={() => handleEventClick(event.id)}
                                 >
-                                    <Box sx={{ position: 'relative', height: 180 }}>
+                                    {/* Image Section */}
+                                    <Box sx={{ position: 'relative', height: 140, flexShrink: 0 }}>
                                         <CardMedia
                                             component="img"
-                                            height="180"
+                                            height="140"
                                             image={event.image}
                                             alt={event.title}
+                                            sx={{ objectFit: 'cover' }}
                                         />
                                         <Box
                                             sx={{
                                                 position: 'absolute',
-                                                bottom: 0,
-                                                left: 0,
-                                                right: 0,
-                                                px: 1.5,
-                                                py: 1,
-                                                background: 'linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)',
+                                                top: 8,
+                                                right: 8,
                                                 display: 'flex',
-                                                justifyContent: 'space-between',
-                                                alignItems: 'center'
+                                                gap: 0.5
                                             }}
                                         >
-                                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                                                <CalendarMonth fontSize="small" sx={{ color: '#fff', fontSize: '0.9rem' }} />
-                                                <Typography variant="caption" sx={{ fontFamily: montserratFont, color: '#fff', fontWeight: 500 }}>
-                                                    {event.date}
-                                                </Typography>
-                                            </Box>
-                                        </Box>
-                                    </Box>
-                                    <CardContent sx={{ flexGrow: 1, p: 2.5 }}>
-                                        <Typography
-                                            gutterBottom
-                                            variant="subtitle1"
-                                            component="h3"
-                                            fontWeight="bold"
-                                            sx={{
-                                                fontFamily: montserratFont,
-                                                fontSize: '1.1rem',
-                                                mb: 1,
-                                                lineHeight: 1.3,
-                                                position: 'relative',
-                                                display: 'inline-block',
-                                                pb: 1.5
-                                            }}
-                                        >
-                                            {event.title}
-                                            {/* Add the CTA-style underline */}
-                                            <Box
-                                                component={motion.div}
-                                                initial={{ width: 0 }}
-                                                whileInView={{ width: '100%' }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 0.4 }}
-                                                sx={{
-                                                    position: 'absolute',
-                                                    height: '2px',
-                                                    width: '100%',
-                                                    bottom: 0,
-                                                    left: '0%',
-                                                    background: 'linear-gradient(90deg, rgba(0,147,233,0.3) 0%, rgba(0,147,233,0) 100%)',
-                                                    borderRadius: '2px',
-                                                }}
-                                            />
-                                        </Typography>
-                                        <Typography
-                                            variant="body2"
-                                            color="text.secondary"
-                                            sx={{
-                                                mb: 2,
-                                                fontFamily: montserratFont,
-                                                fontSize: '0.85rem',
-                                                lineHeight: 1.5
-                                            }}
-                                        >
-                                            {event.description}
-                                        </Typography>
-
-                                        <Box sx={{ mt: 'auto', display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                            {event.tags.map((tag, index) => (
+                                            {event.tags.slice(0, 1).map((tag, tagIndex) => (
                                                 <Chip
-                                                    key={index}
+                                                    key={tagIndex}
                                                     label={tag}
                                                     size="small"
                                                     sx={{
-                                                        bgcolor: 'rgba(0, 147, 233, 0.08)',
-                                                        color: '#0093E9',
+                                                        bgcolor: 'rgba(0, 147, 233, 0.9)',
+                                                        color: 'white',
                                                         fontWeight: 500,
                                                         fontFamily: montserratFont,
-                                                        fontSize: '0.75rem'
+                                                        fontSize: '0.7rem'
                                                     }}
                                                 />
                                             ))}
                                         </Box>
+                                    </Box>
 
-                                        <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-                                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                                <Typography
-                                                    variant="body2"
+                                    {/* Content Section - Similar to UpcomingEventsSection but with Attendees instead of Time/Location */}
+                                    <CardContent sx={{ flexGrow: 1, p: 2.5, display: 'flex', flexDirection: 'column' }}>
+                                        {/* Title Area */}
+                                        <Box
+                                            sx={{
+                                                width: '100%',
+                                                textAlign: 'center',
+                                                mb: 1.5,
+                                                height: '60px',
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                flexShrink: 0
+                                            }}
+                                        >
+                                            <Typography
+                                                variant="h6"
+                                                component="h3"
+                                                fontWeight="bold"
+                                                sx={{
+                                                    fontFamily: montserratFont,
+                                                    position: 'relative',
+                                                    display: 'inline-block',
+                                                    pb: 1.5,
+                                                    fontSize: { xs: '1rem', md: '1.1rem' },
+                                                    textAlign: 'center',
+                                                    display: '-webkit-box',
+                                                    WebkitLineClamp: 2,
+                                                    WebkitBoxOrient: 'vertical',
+                                                    overflow: 'hidden',
+                                                    lineHeight: 1.3,
+                                                    maxWidth: '100%'
+                                                }}
+                                            >
+                                                {event.title}
+                                                <Box
+                                                    component={motion.div}
+                                                    initial={{ width: 0 }}
+                                                    whileInView={{ width: '100%' }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ duration: 0.4, delay: 0.2 + (index * 0.1) }}
                                                     sx={{
-                                                        color: '#0093E9',
-                                                        fontFamily: montserratFont,
-                                                        fontSize: '0.85rem',
-                                                        fontWeight: 600
+                                                        position: 'absolute',
+                                                        height: '2px',
+                                                        width: '100%',
+                                                        bottom: 0,
+                                                        left: 0,
+                                                        background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.3) 50%, rgba(0,147,233,0) 100%)',
+                                                        borderRadius: '2px',
                                                     }}
-                                                >
+                                                />
+                                            </Typography>
+                                        </Box>
+
+                                        {/* Description Area */}
+                                        <Box sx={{ mb: 2, flexShrink: 0, height: '60px', overflow: 'hidden' }}>
+                                            <Typography
+                                                variant="body2"
+                                                color="text.secondary"
+                                                sx={{
+                                                    fontFamily: montserratFont,
+                                                    fontSize: '0.85rem',
+                                                    lineHeight: 1.4,
+                                                    textAlign: 'center',
+                                                    display: '-webkit-box',
+                                                    WebkitLineClamp: 3,
+                                                    WebkitBoxOrient: 'vertical',
+                                                    overflow: 'hidden'
+                                                }}
+                                            >
+                                                {event.description}
+                                            </Typography>
+                                        </Box>
+
+                                        {/* Event Details */}
+                                        <Stack spacing={1} sx={{ mb: 2, flexShrink: 0 }}>
+                                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'center' }}>
+                                                <CalendarMonth fontSize="small" sx={{ color: '#0093E9', opacity: 0.8 }} />
+                                                <Typography variant="body2" sx={{ fontFamily: montserratFont, fontSize: '0.8rem' }}>
+                                                    {event.date}
+                                                </Typography>
+                                            </Box>
+
+                                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, justifyContent: 'center' }}>
+                                                <People fontSize="small" sx={{ color: '#0093E9', opacity: 0.8 }} />
+                                                <Typography variant="body2" sx={{ fontFamily: montserratFont, fontSize: '0.8rem', color: '#0093E9', fontWeight: 600 }}>
                                                     {isInView ? (
                                                         <CountUp
                                                             start={0}
                                                             end={event.attendees}
                                                             duration={2}
                                                             delay={0.2 + index * 0.1}
-                                                            suffix=" Attendees"
+                                                            suffix=" Peserta"
                                                         />
                                                     ) : (
-                                                        "0 Attendees"
+                                                        "0 Peserta"
                                                     )}
                                                 </Typography>
                                             </Box>
+
+                                            {/* Tags Section */}
+                                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, justifyContent: 'center', mt: 1 }}>
+                                                {event.tags.slice(1, 3).map((tag, tagIndex) => (
+                                                    <Chip
+                                                        key={tagIndex}
+                                                        label={tag}
+                                                        size="small"
+                                                        sx={{
+                                                            bgcolor: 'rgba(0, 147, 233, 0.08)',
+                                                            color: '#0093E9',
+                                                            fontWeight: 500,
+                                                            fontFamily: montserratFont,
+                                                            fontSize: '0.7rem'
+                                                        }}
+                                                    />
+                                                ))}
+                                            </Box>
+                                        </Stack>
+
+                                        {/* Button Area */}
+                                        <Box sx={{ mt: 'auto', pt: 1 }}>
+                                            <motion.div
+                                                whileHover={{ scale: 1.03 }}
+                                                whileTap={{ scale: 0.98 }}
+                                            >
+                                                <Button
+                                                    fullWidth
+                                                    variant="outlined"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleEventClick(event.id);
+                                                    }}
+                                                    sx={{
+                                                        fontFamily: montserratFont,
+                                                        textTransform: 'none',
+                                                        fontWeight: 600,
+                                                        borderRadius: '12px',
+                                                        py: 1,
+                                                        fontSize: '0.9rem',
+                                                        borderColor: '#0093E9',
+                                                        color: '#0093E9',
+                                                        '&:hover': {
+                                                            borderColor: '#0093E9',
+                                                            backgroundColor: 'rgba(0, 147, 233, 0.05)',
+                                                            boxShadow: '0 3px 10px rgba(0, 147, 233, 0.1)',
+                                                        },
+                                                        transition: 'all 0.3s ease'
+                                                    }}
+                                                >
+                                                    Lihat Detail
+                                                </Button>
+                                            </motion.div>
                                         </Box>
                                     </CardContent>
                                 </Card>
@@ -277,6 +410,7 @@ export default function PastEventsSection() {
                                 borderRadius: '14px',
                                 py: 1.5,
                                 px: 4,
+                                minWidth: '200px',
                                 borderColor: '#0093E9',
                                 color: '#0093E9',
                                 fontWeight: 600,
@@ -288,10 +422,10 @@ export default function PastEventsSection() {
                                     backgroundColor: 'rgba(0, 147, 233, 0.05)',
                                     boxShadow: '0 4px 15px rgba(0, 147, 233, 0.1)',
                                 },
-                                transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                                transition: 'all 0.3s ease'
                             }}
                         >
-                            Explore All Past Events
+                            Lihat Semua Event Sebelumnya
                         </Button>
                     </motion.div>
                 </Box>

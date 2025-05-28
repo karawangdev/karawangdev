@@ -115,7 +115,7 @@ const Footer = () => {
                                         color: 'rgba(255,255,255,0.8)'
                                     }}
                                 >
-                                    Community of technology enthusiasts, developers, and innovators in Karawang
+                                    Komunitas pecinta teknologi, pengembang, dan inovator di Karawang
                                 </Typography>
                             </motion.div>
                             <Box sx={{ display: 'flex', mt: 2 }}>
@@ -123,8 +123,8 @@ const Footer = () => {
                                     { icon: <Facebook />, url: 'https://facebook.com', i: 0 },
                                     { icon: <Twitter />, url: 'https://twitter.com', i: 1 },
                                     { icon: <Instagram />, url: 'https://instagram.com', i: 2 },
-                                    { icon: <LinkedIn />, url: 'https://linkedin.com', i: 3 },
-                                    { icon: <GitHub />, url: 'https://github.com', i: 4 }
+                                    { icon: <LinkedIn />, url: 'https://linkedin.com/karawangdev', i: 3 },
+                                    { icon: <GitHub />, url: 'https://github.com/karawangdev', i: 4 }
                                 ].map((social) => (
                                     <motion.div
                                         key={social.url}
@@ -188,7 +188,7 @@ const Footer = () => {
                                 </Typography>
                             </motion.div>
                             <Box component="ul" sx={{ p: 0, m: 0, listStyle: 'none' }}>
-                                {['Home', 'About', 'Events', 'Join', 'Blog'].map((item, i) => (
+                                {['Home', 'About', 'Events', 'Join'].map((item, i) => (
                                     <motion.li
                                         key={item}
                                         variants={itemVariants}
@@ -359,7 +359,7 @@ const Footer = () => {
                             letterSpacing: '0.5px'
                         }}
                     >
-                        © {new Date().getFullYear()} KarawangDev Community. All rights reserved.
+                        © {new Date().getFullYear()} Komunitas KarawangDev. Segala hak dilindungi.
                     </Typography>
 
                     {/* Partnership/Sponsorship Contact */}
@@ -380,7 +380,7 @@ const Footer = () => {
                             gap: 1
                         }}
                     >
-                        <Box component="span">For partnership, sponsorship, or media inquiries:</Box>
+                        <Box component="span">untuk kerjasama, sponsorship atau kebutuhan media:</Box>
                         <Link href="mailto:karawangdevs@gmail.com" passHref>
                             <Box
                                 component="a"
@@ -417,8 +417,8 @@ const Footer = () => {
                             gap: 1
                         }}
                     >
-                        <Box component="span">This website is open source on</Box>
-                        <Link href="https://github.com/karawangdev/karawang-dev" passHref>
+                        <Box component="span">Website ini open-source di</Box>
+                        <Link href="https://github.com/karawangdev/karawangdev" passHref>
                             <Box
                                 component="a"
                                 target="_blank"

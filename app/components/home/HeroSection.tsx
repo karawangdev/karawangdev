@@ -257,7 +257,7 @@ export default function HeroSection() {
                                         fontSize: '0.9rem'
                                     }}
                                 >
-                                    Connect, learn, and grow with fellow developers in Karawang
+                                    Terhubung, belajar, dan berkembang bersama sesama pengembang di Karawang
                                 </Typography>
                                 <Stack direction="column" spacing={2} sx={{ width: '100%' }}>
                                     <motion.div
@@ -275,7 +275,7 @@ export default function HeroSection() {
                                                 py: 1.5,
                                                 px: 4,
                                                 background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-                                                boxShadow: '0 3px 15px rgba(254, 107, 139, 0.4)',
+                                                boxShadow: '0 3px 15px rgba(137, 109, 115, 0.4)',
                                                 fontWeight: 600,
                                                 letterSpacing: '0.5px',
                                                 textTransform: 'none',
@@ -288,7 +288,7 @@ export default function HeroSection() {
                                                 transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                                             }}
                                         >
-                                            Join the Community
+                                            Gabung Komunitas
                                         </Button>
                                     </motion.div>
                                     <motion.div
@@ -320,7 +320,7 @@ export default function HeroSection() {
                                                 transition: 'all 0.3s'
                                             }}
                                         >
-                                            Upcoming Events
+                                            Event Mendatang
                                         </Button>
                                     </motion.div>
                                 </Stack>
@@ -461,7 +461,7 @@ export default function HeroSection() {
                                         fontSize: '1rem'
                                     }}
                                 >
-                                    Connect, learn, and grow with fellow developers in Karawang
+                                    Terhubung, belajar, dan berkembang bersama sesama pengembang di Karawang
                                 </Typography>
                                 <Stack direction="row" spacing={2}>
                                     <motion.div
@@ -491,7 +491,7 @@ export default function HeroSection() {
                                                 transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                                             }}
                                         >
-                                            Join the Community
+                                            Gabung Komunitas
                                         </Button>
                                     </motion.div>
                                     <motion.div
@@ -522,7 +522,7 @@ export default function HeroSection() {
                                                 transition: 'all 0.3s'
                                             }}
                                         >
-                                            Upcoming Events
+                                            Event Mendatang
                                         </Button>
                                     </motion.div>
                                 </Stack>

@@ -17,14 +17,54 @@ export default function EventCTASection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             sx={{
-                py: 12,
-                background: 'linear-gradient(120deg, #ffffff 0%, #f8f9fa 100%)',
+                py: 10,
+                fontFamily: montserratFont,
+                backgroundColor: '#f8fafc', // Same background as other sections
                 position: 'relative',
-                fontFamily: montserratFont
+                overflow: 'hidden',
+                // Add subtle pattern like other sections
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundImage: 'url("/subtle-pattern.png")',
+                    backgroundSize: '1000px',
+                    opacity: 0.1,
+                    pointerEvents: 'none'
+                }
             }}
         >
-            <Container maxWidth="lg">
-                <Grid container spacing={4} justifyContent="center">
+            {/* Decorative elements like other sections */}
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: '5%',
+                    right: '5%',
+                    width: '300px',
+                    height: '300px',
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(0,147,233,0.05) 0%, rgba(255,255,255,0) 70%)',
+                    pointerEvents: 'none'
+                }}
+            />
+            <Box
+                sx={{
+                    position: 'absolute',
+                    bottom: '10%',
+                    left: '5%',
+                    width: '250px',
+                    height: '250px',
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(254,107,139,0.06) 0%, rgba(255,255,255,0) 70%)',
+                    pointerEvents: 'none'
+                }}
+            />
+
+            <Container maxWidth="xl"> {/* Changed to xl for consistency */}
+                <Grid container spacing={3} justifyContent="center"> {/* Changed spacing to 3 */}
                     <Grid item xs={12} md={6}>
                         <motion.div
                             whileHover={{ y: -10 }}
@@ -35,14 +75,21 @@ export default function EventCTASection() {
                                 sx={{
                                     p: 4,
                                     height: '100%',
-                                    borderRadius: 4,
+                                    borderRadius: '20px', // Same border radius as other cards
                                     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
                                     color: 'white',
-                                    boxShadow: '0 6px 20px rgba(254, 107, 139, 0.3)',
+                                    border: '1px solid rgba(254, 107, 139, 0.1)', // Add border like other cards
+                                    boxShadow: '0 4px 20px rgba(254, 107, 139, 0.2)', // Same shadow pattern
                                     display: 'flex',
                                     flexDirection: 'column',
                                     alignItems: 'center',
-                                    textAlign: 'center'
+                                    textAlign: 'center',
+                                    transition: 'all 0.3s ease',
+                                    '&:hover': {
+                                        boxShadow: '0 15px 40px rgba(254, 107, 139, 0.3)', // Same hover shadow pattern
+                                        transform: 'translateY(-5px)',
+                                        borderColor: 'rgba(254, 107, 139, 0.2)'
+                                    }
                                 }}
                             >
                                 <CalendarMonthIcon sx={{ fontSize: 60, mb: 2, opacity: 0.9 }} />
@@ -54,10 +101,11 @@ export default function EventCTASection() {
                                         fontFamily: montserratFont,
                                         position: 'relative',
                                         display: 'inline-block',
-                                        pb: 1.5
+                                        pb: 1.5,
+                                        fontSize: { xs: '1.8rem', md: '2.125rem' } // Responsive font size
                                     }}
                                 >
-                                    Submit Your Event
+                                    Ajukan Event Anda
                                     {/* Add the CTA-style underline */}
                                     <Box
                                         component={motion.div}
@@ -83,10 +131,11 @@ export default function EventCTASection() {
                                         fontFamily: montserratFont,
                                         fontWeight: 400,
                                         lineHeight: 1.6,
-                                        maxWidth: 500
+                                        maxWidth: 500,
+                                        fontSize: { xs: '0.95rem', md: '1rem' } // Responsive font size
                                     }}
                                 >
-                                    Have an event idea for the Karawang Developer Community? Submit your proposal and share your knowledge with fellow developers.
+                                    Punya ide event untuk Komunitas Developer Karawang? Ajukan proposal Anda dan bagikan pengetahuan dengan sesama developer.
                                 </Typography>
                                 <motion.div
                                     whileHover={{ scale: 1.05 }}
@@ -106,6 +155,7 @@ export default function EventCTASection() {
                                             },
                                             px: 4,
                                             py: 1.5,
+                                            minWidth: '200px', // Consistent button width
                                             borderRadius: '14px',
                                             textTransform: 'none',
                                             fontFamily: montserratFont,
@@ -113,7 +163,7 @@ export default function EventCTASection() {
                                             transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                                         }}
                                     >
-                                        Submit Proposal
+                                        Kirim Proposal
                                     </Button>
                                 </motion.div>
                             </Paper>
@@ -130,14 +180,21 @@ export default function EventCTASection() {
                                 sx={{
                                     p: 4,
                                     height: '100%',
-                                    borderRadius: 4,
+                                    borderRadius: '20px', // Same border radius as other cards
                                     background: 'linear-gradient(45deg, #0093E9 30%, #80D0C7 90%)',
                                     color: 'white',
-                                    boxShadow: '0 6px 20px rgba(0, 147, 233, 0.3)',
+                                    border: '1px solid rgba(0, 147, 233, 0.1)', // Add border like other cards
+                                    boxShadow: '0 4px 20px rgba(0, 147, 233, 0.2)', // Same shadow pattern
                                     display: 'flex',
                                     flexDirection: 'column',
                                     alignItems: 'center',
-                                    textAlign: 'center'
+                                    textAlign: 'center',
+                                    transition: 'all 0.3s ease',
+                                    '&:hover': {
+                                        boxShadow: '0 15px 40px rgba(0, 147, 233, 0.3)', // Same hover shadow pattern
+                                        transform: 'translateY(-5px)',
+                                        borderColor: 'rgba(0, 147, 233, 0.2)'
+                                    }
                                 }}
                             >
                                 <EventNoteIcon sx={{ fontSize: 60, mb: 2, opacity: 0.9 }} />
@@ -149,10 +206,11 @@ export default function EventCTASection() {
                                         fontFamily: montserratFont,
                                         position: 'relative',
                                         display: 'inline-block',
-                                        pb: 1.5
+                                        pb: 1.5,
+                                        fontSize: { xs: '1.8rem', md: '2.125rem' } // Responsive font size
                                     }}
                                 >
-                                    Host a Venue
+                                    Sediakan Venue
                                     {/* Add the CTA-style underline */}
                                     <Box
                                         component={motion.div}
@@ -178,10 +236,11 @@ export default function EventCTASection() {
                                         fontFamily: montserratFont,
                                         fontWeight: 400,
                                         lineHeight: 1.6,
-                                        maxWidth: 500
+                                        maxWidth: 500,
+                                        fontSize: { xs: '0.95rem', md: '1rem' } // Responsive font size
                                     }}
                                 >
-                                    Partner with us by providing a venue for our community events. Support local developers while promoting your space.
+                                    Bermitra dengan kami dengan menyediakan venue untuk event komunitas. Dukung developer lokal sambil mempromosikan tempat Anda.
                                 </Typography>
                                 <motion.div
                                     whileHover={{ scale: 1.05 }}
@@ -201,6 +260,7 @@ export default function EventCTASection() {
                                             },
                                             px: 4,
                                             py: 1.5,
+                                            minWidth: '200px', // Consistent button width
                                             borderRadius: '14px',
                                             textTransform: 'none',
                                             fontFamily: montserratFont,
@@ -208,7 +268,7 @@ export default function EventCTASection() {
                                             transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                                         }}
                                     >
-                                        Contact Us
+                                        Hubungi Kami
                                     </Button>
                                 </motion.div>
                             </Paper>

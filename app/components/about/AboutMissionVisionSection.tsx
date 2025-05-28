@@ -33,6 +33,23 @@ const itemVariants = {
 const montserratFont = 'Montserrat, sans-serif';
 
 export default function AboutMissionVisionSection() {
+    const items = [
+        {
+            icon: <FlagIcon fontSize="large" />,
+            title: 'Misi',
+            description: [
+                'Membangun komunitas developer dinamis yang mendorong pembelajaran, kolaborasi, dan inovasi dalam ekosistem teknologi lokal.'
+            ]
+        },
+        {
+            icon: <LightbulbIcon fontSize="large" />,
+            title: 'Visi',
+            description: [
+                'Mengubah Karawang menjadi pusat teknologi yang diakui dengan komunitas yang menjadi katalis kemajuan teknologi regional.'
+            ]
+        }
+    ];
+
     return (
         <Box
             component={motion.section}
@@ -42,79 +59,220 @@ export default function AboutMissionVisionSection() {
             variants={containerVariants}
             sx={{
                 py: 10,
-                bgcolor: 'rgba(0, 0, 0, 0.02)',
-                fontFamily: montserratFont
+                fontFamily: montserratFont,
+                backgroundColor: '#f8fafc', // Same background as AboutSection
+                minHeight: '100vh',
+                position: 'relative',
+                overflow: 'hidden',
+                // Add subtle pattern like HeroSection
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundImage: 'url("/subtle-pattern.png")',
+                    backgroundSize: '1000px',
+                    opacity: 0.1,
+                    pointerEvents: 'none'
+                }
             }}
         >
-            <Container maxWidth="lg">
+            {/* Decorative elements like HeroSection */}
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: '5%',
+                    right: '5%',
+                    width: '300px',
+                    height: '300px',
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(0,147,233,0.05) 0%, rgba(255,255,255,0) 70%)',
+                    pointerEvents: 'none'
+                }}
+            />
+            <Box
+                sx={{
+                    position: 'absolute',
+                    bottom: '10%',
+                    left: '5%',
+                    width: '250px',
+                    height: '250px',
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(254,107,139,0.06) 0%, rgba(255,255,255,0) 70%)',
+                    pointerEvents: 'none'
+                }}
+            />
+
+            <Container maxWidth="xl"> {/* Changed to xl for consistency */}
                 <motion.div variants={itemVariants}>
                     <SectionTitle
-                        title="Mission & Vision"
-                        subtitle="What drives us forward and shapes our community"
+                        title="Misi & Visi"
+                        subtitle="Apa yang mendorong kami maju dan membentuk komunitas kami"
                     />
                 </motion.div>
 
-                <Grid container spacing={4}>
-                    <Grid item xs={12} md={6}>
-                        <motion.div variants={itemVariants} whileHover={{ y: -8 }}>
-                            <Paper elevation={0} sx={{
-                                p: 4,
-                                height: '100%',
-                                borderRadius: 4,
-                                border: '1px solid rgba(0,0,0,0.05)',
-                                transition: 'all 0.3s',
-                                '&:hover': {
-                                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
-                                }
-                            }}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-                                    <FlagIcon sx={{ fontSize: 36, color: 'primary.main', mr: 2 }} />
-                                    <Typography variant="h4" component="h3" fontWeight="bold" sx={{ fontFamily: montserratFont }}>
-                                        Mission
-                                    </Typography>
-                                </Box>
-                                <Typography variant="body1" paragraph sx={{ fontFamily: montserratFont }}>
-                                    To build and nurture a vibrant community of developers in Karawang that fosters
-                                    learning, collaboration, and innovation.
-                                </Typography>
-                                <Typography variant="body1" sx={{ fontFamily: montserratFont }}>
-                                    We aim to create an inclusive environment where developers can share knowledge,
-                                    build connections, and grow together professionally while contributing to the
-                                    local tech ecosystem.
-                                </Typography>
-                            </Paper>
-                        </motion.div>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <motion.div variants={itemVariants} whileHover={{ y: -8 }}>
-                            <Paper elevation={0} sx={{
-                                p: 4,
-                                height: '100%',
-                                borderRadius: 4,
-                                border: '1px solid rgba(0,0,0,0.05)',
-                                transition: 'all 0.3s',
-                                '&:hover': {
-                                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
-                                }
-                            }}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-                                    <LightbulbIcon sx={{ fontSize: 36, color: 'primary.main', mr: 2 }} />
-                                    <Typography variant="h4" component="h3" fontWeight="bold" sx={{ fontFamily: montserratFont }}>
-                                        Vision
-                                    </Typography>
-                                </Box>
-                                <Typography variant="body1" paragraph sx={{ fontFamily: montserratFont }}>
-                                    To transform Karawang into a recognized technology hub where innovation thrives
-                                    and technical talent flourishes.
-                                </Typography>
-                                <Typography variant="body1" sx={{ fontFamily: montserratFont }}>
-                                    We envision a future where our community becomes a catalyst for technological
-                                    advancement in the region, creating opportunities for developers and
-                                    contributing to the growth of the digital economy.
-                                </Typography>
-                            </Paper>
-                        </motion.div>
-                    </Grid>
+                <Grid
+                    container
+                    spacing={3} // Same spacing as AboutSection
+                    sx={{ mt: 2 }}
+                    justifyContent="center"
+                    alignItems="stretch"
+                >
+                    {items.map((item, index) => (
+                        <Grid
+                            item
+                            xs={12}
+                            sm={12}
+                            md={6} // Two columns layout
+                            key={index}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column'
+                            }}
+                        >
+                            <motion.div
+                                variants={itemVariants}
+                                whileHover={{ y: -10 }}
+                                style={{
+                                    height: '100%',
+                                    width: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column'
+                                }}
+                                transition={{ type: 'spring', stiffness: 300 }}
+                            >
+                                <Paper
+                                    elevation={0}
+                                    sx={{
+                                        width: '100%',
+                                        maxWidth: '500px',
+                                        height: '320px',
+                                        p: 4,
+                                        textAlign: 'center',
+                                        borderRadius: '20px',
+                                        transition: 'all 0.3s ease',
+                                        border: '1px solid rgba(254, 107, 139, 0.1)', // Red border
+                                        backgroundColor: '#ffffff',
+                                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                                        '&:hover': {
+                                            boxShadow: '0 15px 40px rgba(254, 107, 139, 0.15)', // Red shadow
+                                            transform: 'translateY(-5px)',
+                                            borderColor: 'rgba(254, 107, 139, 0.2)' // Red border on hover
+                                        },
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-start',
+                                        overflow: 'hidden',
+                                        flex: 1,
+                                        mx: 'auto'
+                                    }}
+                                >
+                                    {/* Icon Area - red color maintained */}
+                                    <Box
+                                        sx={{
+                                            color: '#FE6B8B',
+                                            mb: 2,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            height: 60,
+                                            width: 60,
+                                            borderRadius: '50%',
+                                            background: 'rgba(254, 107, 139, 0.08)',
+                                            flexShrink: 0,
+                                            svg: {
+                                                fontSize: '1.8rem'
+                                            }
+                                        }}
+                                    >
+                                        {item.icon}
+                                    </Box>
+
+                                    {/* Title Area - red gradient maintained */}
+                                    <Box
+                                        sx={{
+                                            width: '100%',
+                                            textAlign: 'center',
+                                            mb: 2,
+                                            height: '50px',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            flexShrink: 0
+                                        }}
+                                    >
+                                        <Typography
+                                            variant="h5"
+                                            component="h3"
+                                            fontWeight="bold"
+                                            sx={{
+                                                fontFamily: montserratFont,
+                                                position: 'relative',
+                                                display: 'inline-block',
+                                                pb: 1.5,
+                                                fontSize: { xs: '1.3rem', md: '1.5rem' },
+                                                textAlign: 'center'
+                                            }}
+                                        >
+                                            {item.title}
+                                            <Box
+                                                component={motion.div}
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: '100%' }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.4, delay: 0.2 + (index * 0.1) }}
+                                                sx={{
+                                                    position: 'absolute',
+                                                    height: '3px',
+                                                    width: '100%',
+                                                    bottom: 0,
+                                                    left: 0,
+                                                    background: 'linear-gradient(90deg, rgba(254, 107, 139, 0) 0%, rgba(254, 107, 139, 0.5) 50%, rgba(254, 107, 139, 0) 100%)',
+                                                    borderRadius: '2px',
+                                                }}
+                                            />
+                                        </Typography>
+                                    </Box>
+
+                                    {/* Description Area - shorter text */}
+                                    <Box sx={{
+                                        flex: 1,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        width: '100%',
+                                        overflow: 'hidden',
+                                        px: 2
+                                    }}>
+                                        <Typography
+                                            variant="body1"
+                                            color="text.secondary"
+                                            sx={{
+                                                fontFamily: montserratFont,
+                                                width: '100%',
+                                                textAlign: 'center',
+                                                lineHeight: 1.6,
+                                                fontSize: { xs: '0.95rem', md: '1rem' },
+                                                wordWrap: 'break-word',
+                                                whiteSpace: 'normal',
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: 3, // Reduced from 5 to 3 lines
+                                                WebkitBoxOrient: 'vertical',
+                                                overflow: 'hidden'
+                                            }}
+                                        >
+                                            {/* Use the shortened description */}
+                                            {item.description.join(' ')}
+                                        </Typography>
+                                    </Box>
+                                </Paper>
+                            </motion.div>
+                        </Grid>
+                    ))}
                 </Grid>
             </Container>
         </Box>

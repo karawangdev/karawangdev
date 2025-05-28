@@ -144,7 +144,7 @@ export default function EventsHeroSection() {
                                     pb: 1.5
                                 }}
                             >
-                                Our
+                                Event
                                 <Box
                                     component="span"
                                     sx={{
@@ -161,7 +161,7 @@ export default function EventsHeroSection() {
                                         }
                                     }}
                                 >
-                                    Events
+                                    Kami
                                 </Box>
                                 {/* Add the CTA-style underline */}
                                 <Box
@@ -192,7 +192,7 @@ export default function EventsHeroSection() {
                                     color: '#555555'
                                 }}
                             >
-                                Discover tech talks, workshops, hackathons, and networking opportunities organized by the Karawang Developer Community
+                                Temukan tech talks, workshop, hackathon, dan kesempatan networking yang diselenggarakan oleh Komunitas Developer Karawang
                             </Typography>
                         </motion.div>
                     </Grid>
@@ -225,7 +225,7 @@ export default function EventsHeroSection() {
                             >
                                 <Image
                                     src="/events-illustration.svg"
-                                    alt="Karawang Developer Community Events"
+                                    alt="Event Komunitas Developer Karawang"
                                     fill
                                     style={{ objectFit: 'contain' }}
                                     priority

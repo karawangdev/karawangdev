@@ -36,23 +36,23 @@ export default function AboutSection() {
     const features = [
         {
             icon: <CodeIcon fontSize="large" />,
-            title: 'Tech Meetups',
-            description: 'Regular coding sessions, hackathons, and technical workshops to enhance your skills'
+            title: 'Kumpul Teknologi',
+            description: 'Sesi pengkodean reguler, hackathon, dan lokakarya teknis untuk meningkatkan keterampilan developer'
         },
         {
             icon: <PeopleIcon fontSize="large" />,
             title: 'Networking',
-            description: 'Connect with like-minded developers and industry professionals'
+            description: 'Terhubung dengan pengembang, desainer, dan profesional industri yang berpikiran sama'
         },
         {
             icon: <SchoolIcon fontSize="large" />,
-            title: 'Learning',
-            description: 'Access to learning resources, mentorship, and career guidance'
+            title: 'Belajar',
+            description: 'Akses ke sumber daya pembelajaran, bimbingan, dan panduan karir untuk pengembangan diri'
         },
         {
             icon: <EventIcon fontSize="large" />,
-            title: 'Events',
-            description: 'Tech talks, conferences, and social events for the community'
+            title: 'Event',
+            description: 'Kegiatan teknologi, konferensi, dan acara sosial untuk membangun komunitas yang solid'
         }
     ];
 
@@ -65,35 +65,78 @@ export default function AboutSection() {
             variants={containerVariants}
             sx={{
                 py: 10,
-                fontFamily: montserratFont
+                fontFamily: montserratFont,
+                backgroundColor: '#f8fafc', // Tambahkan background abu-abu terang
+                minHeight: '100vh'
             }}
         >
-            <Container maxWidth="lg">
+            <Container maxWidth="xl">
                 <motion.div variants={itemVariants}>
                     <SectionTitle
-                        title="About Our Community"
-                        subtitle="A thriving ecosystem for developers, designers, and tech enthusiasts in Karawang"
+                        title="Tentang KarawangDev"
+                        subtitle="Ekosistem yang berkembang untuk pengembang, desainer, dan penggemar teknologi di Karawang"
                     />
                 </motion.div>
 
-                <Grid container spacing={4} sx={{ mt: 2 }}>
+                <Grid
+                    container
+                    spacing={3} // Tambah spacing
+                    sx={{ mt: 2 }}
+                    justifyContent="center"
+                    alignItems="stretch"
+                >
                     {features.map((item, index) => (
-                        <Grid item xs={12} sm={6} md={3} key={index}>
+                        <Grid
+                            item
+                            xs={12}
+                            sm={6}
+                            md={3}
+                            key={`item-${index}`}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column'
+                            }}
+                        >
                             <motion.div
                                 variants={itemVariants}
                                 whileHover={{ y: -10 }}
-                            >
-                                <Paper elevation={0} sx={{
-                                    p: 3,
+                                style={{
                                     height: '100%',
-                                    textAlign: 'center',
-                                    borderRadius: '16px',
-                                    transition: 'box-shadow 0.3s',
-                                    border: '1px solid rgba(0, 0, 0, 0.05)',
-                                    '&:hover': {
-                                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
-                                    }
-                                }}>
+                                    width: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column'
+                                }}
+                                transition={{ type: 'spring', stiffness: 300 }}
+                            >
+                                <Paper
+                                    elevation={0}
+                                    sx={{
+                                        width: '280px', // Ukuran lebar tetap
+                                        height: '320px', // Ukuran tinggi tetap
+                                        p: 3,
+                                        minWidth: 0,
+                                        maxWidth: '100%',
+                                        textAlign: 'center',
+                                        borderRadius: '20px',
+                                        transition: 'all 0.3s ease',
+                                        border: '1px solid rgba(0, 147, 233, 0.1)',
+                                        backgroundColor: '#ffffff', // Background putih untuk kontras
+                                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', // Shadow halus
+                                        '&:hover': {
+                                            boxShadow: '0 15px 40px rgba(0, 147, 233, 0.15)',
+                                            transform: 'translateY(-5px)',
+                                            borderColor: 'rgba(0, 147, 233, 0.2)'
+                                        },
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-start',
+                                        overflow: 'hidden',
+                                        flex: 1,
+                                        mx: 'auto' // Center kotak
+                                    }}
+                                >
+                                    {/* Icon Area */}
                                     <Box
                                         sx={{
                                             color: '#0093E9',
@@ -101,50 +144,100 @@ export default function AboutSection() {
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'center',
-                                            height: 70
+                                            height: 60,
+                                            width: 60,
+                                            borderRadius: '50%',
+                                            background: 'rgba(0, 147, 233, 0.08)',
+                                            flexShrink: 0,
+                                            svg: {
+                                                fontSize: '1.8rem'
+                                            }
                                         }}
                                     >
                                         {item.icon}
                                     </Box>
-                                    <Typography
-                                        variant="h6"
-                                        component="h3"
-                                        gutterBottom
-                                        fontWeight="bold"
+
+                                    {/* Title Area */}
+                                    <Box
                                         sx={{
-                                            fontFamily: montserratFont,
-                                            position: 'relative',
-                                            display: 'inline-block',
-                                            pb: 1.5,
-                                            mb: 1.5
+                                            width: '100%',
+                                            textAlign: 'center',
+                                            mb: 1.5,
+                                            height: '50px',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            flexShrink: 0
                                         }}
                                     >
-                                        {item.title}
-                                        {/* Add the CTA-style underline */}
-                                        <Box
-                                            component={motion.div}
-                                            initial={{ width: 0 }}
-                                            whileInView={{ width: '50%' }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 0.4, delay: 0.2 }}
+                                        <Typography
+                                            variant="h6"
+                                            component="h3"
+                                            fontWeight="bold"
                                             sx={{
-                                                position: 'absolute',
-                                                height: '2px', // Smaller for card titles
-                                                width: '50%',
-                                                bottom: 0,
-                                                left: '25%',
-                                                background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.3) 50%, rgba(0,147,233,0) 100%)',
-                                                borderRadius: '2px',
+                                                fontFamily: montserratFont,
+                                                position: 'relative',
+                                                display: 'inline-block',
+                                                pb: 1.5,
+                                                fontSize: { xs: '1.1rem', md: '1.15rem' },
+                                                textAlign: 'center',
+                                                whiteSpace: 'nowrap',
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis',
+                                                maxWidth: '100%'
                                             }}
-                                        />
-                                    </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        color="text.secondary"
-                                        sx={{ fontFamily: montserratFont }}
-                                    >
-                                        {item.description}
-                                    </Typography>
+                                        >
+                                            {item.title}
+                                            <Box
+                                                component={motion.div}
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: '100%' }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.4, delay: 0.2 + (index * 0.1) }}
+                                                sx={{
+                                                    position: 'absolute',
+                                                    height: '2px',
+                                                    width: '100%',
+                                                    bottom: 0,
+                                                    left: 0,
+                                                    background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.3) 50%, rgba(0,147,233,0) 100%)',
+                                                    borderRadius: '2px',
+                                                }}
+                                            />
+                                        </Typography>
+                                    </Box>
+
+                                    {/* Description Area */}
+                                    <Box sx={{
+                                        flex: 1,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        width: '100%',
+                                        overflow: 'hidden',
+                                        px: 1
+                                    }}>
+                                        <Typography
+                                            variant="body2"
+                                            color="text.secondary"
+                                            sx={{
+                                                fontFamily: montserratFont,
+                                                width: '100%',
+                                                textAlign: 'center',
+                                                lineHeight: 1.5,
+                                                fontSize: { xs: '0.85rem', md: '0.85rem' },
+                                                wordWrap: 'break-word',
+                                                whiteSpace: 'normal',
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: 4,
+                                                WebkitBoxOrient: 'vertical',
+                                                overflow: 'hidden'
+                                            }}
+                                        >
+                                            {item.description}
+                                        </Typography>
+                                    </Box>
                                 </Paper>
                             </motion.div>
                         </Grid>

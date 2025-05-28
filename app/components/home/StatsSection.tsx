@@ -34,10 +34,10 @@ const montserratFont = 'Montserrat, sans-serif';
 
 export default function StatsSection() {
     const stats = [
-        { number: 500, suffix: '+', label: 'Community Members' },
-        { number: 50, suffix: '+', label: 'Events Hosted' },
-        { number: 20, suffix: '+', label: 'Tech Partners' },
-        { number: 100, suffix: '+', label: 'Projects Built' }
+        { number: 500, suffix: '+', label: 'Anggota Komunitas' },
+        { number: 50, suffix: '+', label: 'Event Diselenggarakan' },
+        { number: 20, suffix: '+', label: 'Mitra Teknologi' },
+        { number: 100, suffix: '+', label: 'Proyek Dibangun' }
     ];
 
     const sectionRef = useRef(null);
@@ -53,39 +53,78 @@ export default function StatsSection() {
             ref={sectionRef}
             sx={{
                 py: 10,
-                fontFamily: montserratFont
+                fontFamily: montserratFont,
+                backgroundColor: '#f8fafc', // Same as AboutSection
+                minHeight: '100vh'
             }}
         >
-            <Container maxWidth="lg">
-                <Grid container spacing={4} justifyContent="center">
+            <Container maxWidth="xl">
+                <Grid
+                    container
+                    spacing={3} // Same spacing as AboutSection
+                    justifyContent="center"
+                    alignItems="stretch"
+                >
                     {stats.map((stat, index) => (
-                        <Grid item xs={6} md={3} key={index}>
+                        <Grid
+                            item
+                            xs={12}
+                            sm={6}
+                            md={3}
+                            key={index}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column'
+                            }}
+                        >
                             <motion.div
                                 variants={itemVariants}
-                                whileHover={{ y: -5 }}
+                                whileHover={{ y: -10 }}
+                                style={{
+                                    height: '100%',
+                                    width: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column'
+                                }}
+                                transition={{ type: 'spring', stiffness: 300 }}
                             >
                                 <Box sx={{
-                                    textAlign: 'center',
+                                    width: '280px', // Same as AboutSection
+                                    height: '200px', // Adjusted height for stats
                                     p: 3,
-                                    borderRadius: '16px',
-                                    transition: 'all 0.3s',
+                                    minWidth: 0,
+                                    maxWidth: '100%',
+                                    textAlign: 'center',
+                                    borderRadius: '20px',
+                                    transition: 'all 0.3s ease',
+                                    border: '1px solid rgba(254, 107, 139, 0.1)', // Updated to #FE6B8B
+                                    backgroundColor: '#ffffff',
+                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
                                     '&:hover': {
-                                        background: 'rgba(0,0,0,0.02)'
-                                    }
+                                        boxShadow: '0 15px 40px rgba(254, 107, 139, 0.15)', // Updated to #FE6B8B
+                                        transform: 'translateY(-5px)',
+                                        borderColor: 'rgba(254, 107, 139, 0.2)' // Updated to #FE6B8B
+                                    },
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    overflow: 'hidden',
+                                    flex: 1,
+                                    mx: 'auto'
                                 }}>
                                     <Typography
                                         variant="h3"
                                         component="p"
                                         fontWeight="bold"
                                         sx={{
-                                            mb: 1,
+                                            mb: 2,
                                             pb: 1.5,
                                             position: 'relative',
                                             display: 'inline-block',
-                                            background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-                                            WebkitBackgroundClip: 'text',
-                                            WebkitTextFillColor: 'transparent',
-                                            fontFamily: montserratFont
+                                            color: '#FE6B8B', // Updated to #FE6B8B
+                                            fontFamily: montserratFont,
+                                            fontSize: { xs: '2.5rem', md: '3rem' }
                                         }}
                                     >
                                         {/* Animated counting from 0 */}
@@ -103,28 +142,34 @@ export default function StatsSection() {
                                             `0${stat.suffix}`
                                         )}
 
-                                        {/* CTA-style underline */}
+                                        {/* Animated underline */}
                                         <Box
                                             component={motion.div}
                                             initial={{ width: 0 }}
-                                            whileInView={{ width: '60%' }}
+                                            whileInView={{ width: '100%' }}
                                             viewport={{ once: true }}
-                                            transition={{ duration: 0.4 }}
+                                            transition={{ duration: 0.4, delay: 0.2 + (index * 0.1) }}
                                             sx={{
                                                 position: 'absolute',
-                                                height: '3px', // Slightly smaller for stats
-                                                width: '60%',
+                                                height: '2px',
+                                                width: '100%',
                                                 bottom: 0,
-                                                left: '20%',
-                                                background: 'linear-gradient(90deg, rgba(254,107,139,0) 0%, rgba(254,107,139,0.3) 50%, rgba(254,107,139,0) 100%)',
+                                                left: 0,
+                                                background: 'linear-gradient(90deg, rgba(254, 107, 139, 0) 0%, rgba(254, 107, 139, 0.3) 50%, rgba(254, 107, 139, 0) 100%)', // Updated to #FE6B8B
                                                 borderRadius: '2px',
                                             }}
                                         />
                                     </Typography>
+
                                     <Typography
                                         variant="body1"
                                         color="text.secondary"
-                                        sx={{ fontFamily: montserratFont, fontWeight: 500 }}
+                                        sx={{
+                                            fontFamily: montserratFont,
+                                            fontWeight: 500,
+                                            fontSize: { xs: '0.9rem', md: '1rem' },
+                                            textAlign: 'center'
+                                        }}
                                     >
                                         {stat.label}
                                     </Typography>

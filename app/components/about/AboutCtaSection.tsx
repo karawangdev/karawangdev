@@ -84,9 +84,10 @@ export default function AboutCtaSection() {
                                 color: '#0056a8',
                                 position: 'relative',
                                 display: 'inline-block',
+                                fontSize: { xs: '2rem', md: '2.5rem' }
                             }}
                         >
-                            Be Part of Our Story
+                            Bergabunglah Dengan Kami
                             <Box
                                 sx={{
                                     position: 'absolute',
@@ -116,10 +117,11 @@ export default function AboutCtaSection() {
                                 fontWeight: 500,
                                 lineHeight: 1.5,
                                 maxWidth: 700,
-                                mx: 'auto'
+                                mx: 'auto',
+                                fontSize: { xs: '1.1rem', md: '1.25rem' }
                             }}
                         >
-                            Join us in building Karawang's developer community and shaping the future of tech in our region
+                            Bergabunglah dengan kami dalam membangun komunitas developer Karawang dan membentuk masa depan teknologi di wilayah kita
                         </Typography>
                     </motion.div>
 
@@ -146,7 +148,8 @@ export default function AboutCtaSection() {
                                 sx={{
                                     borderRadius: '14px',
                                     py: 1.5,
-                                    px: 5,
+                                    px: 4, // Reduced padding to match content
+                                    minWidth: '200px', // Set minimum width for consistency
                                     background: 'linear-gradient(135deg, #0093E9 0%, #80D0C7 100%)',
                                     color: 'white',
                                     fontWeight: 600,
@@ -161,7 +164,7 @@ export default function AboutCtaSection() {
                                     transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                                 }}
                             >
-                                Join the Community
+                                Gabung Komunitas
                             </Button>
                         </motion.div>
                         <motion.div
@@ -181,7 +184,8 @@ export default function AboutCtaSection() {
                                 sx={{
                                     borderRadius: '14px',
                                     py: 1.5,
-                                    px: 5,
+                                    px: 4, // Same padding as first button
+                                    minWidth: '200px', // Same minimum width
                                     borderColor: '#0093E9',
                                     color: '#0093E9',
                                     fontWeight: 600,
@@ -197,7 +201,7 @@ export default function AboutCtaSection() {
                                     transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                                 }}
                             >
-                                Attend an Event
+                                Hadiri Event
                             </Button>
                         </motion.div>
                     </Stack>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import JoinHeroSection from '@/app/components/join/JoinHeroSection';
 import JoinExplanationStep from '@/app/components/join/JoinExplanationStep';
 import JoinCodeOfConductStep from '@/app/components/join/JoinCodeOfConductStep';
-import JoinTelegramStep from '@/app/components/join/JoinTelegramStep';
+import JoinCommunityStep from '@/app/components/join/JoinCommunityStep';
 import JoinStepper from '@/app/components/join/JoinStepper';
 
 export default function JoinPage() {
@@ -45,7 +45,7 @@ export default function JoinPage() {
                     )}
 
                     {activeStep === 2 && (
-                        <JoinTelegramStep />
+                        <JoinCommunityStep />
                     )}
                 </>
             )}

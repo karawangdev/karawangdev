@@ -2,18 +2,18 @@
 
 import HeroSection from '../components/home/HeroSection';
 import AboutSection from '../components/home/AboutSection';
-import EventsSection from '../components/home/EventsSection';
+import UpcomingEventsSection from '../components/events/UpcomingEventsSection';
 import StatsSection from '../components/home/StatsSection';
-import CTASection from '../components/home/CTASection';
+import AboutCtaSection from '../components/about/AboutCtaSection';
 
 export default function HomePage() {
     return (
         <>
             <HeroSection />
             <AboutSection />
-            <EventsSection />
+            <UpcomingEventsSection />
             <StatsSection />
-            <CTASection />
+            <AboutCtaSection />
         </>
     );
 }
