@@ -6,6 +6,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import Navbar from './components/ui/navbar';
 import Footer from './components/ui/footer';
@@ -14,7 +15,6 @@ import InteractiveTerminal from './components/ui/InteractiveTerminal';
 
 const inter = Inter({ subsets: ['latin'] });
 
-// Create a theme instance
 const theme = createTheme({
     palette: {
         primary: {
@@ -30,7 +30,6 @@ const theme = createTheme({
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    // Initialize AOS
     useEffect(() => {
         AOS.init({
             duration: 800,
@@ -40,43 +39,212 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     }, []);
 
     return (
-        <html lang="en">
+        <html lang="id">
             <head>
                 <meta charSet="utf-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <title>Karawang Dev - Komunitas Developer Karawang</title>
-                <meta name="description" content="Komunitas developer di Karawang untuk berbagi ilmu, berkolaborasi, dan berkembang bersama dalam dunia teknologi." />
+                <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-                {/* Favicon */}
-                <link rel="icon" href="/logo.jpg" />
-                <link rel="shortcut icon" href="/logo.jpg" />
-                <link rel="apple-touch-icon" href="/logo.jpg" />
+                {/* ✅ Enhanced Title & Description */}
+                <title>KarawangDev - Komunitas Developer Karawang | Tech Community Indonesia</title>
+                <meta name="description" content="Bergabung dengan KarawangDev, komunitas developer terbesar di Karawang! Workshop, hackathon, networking, dan kolaborasi untuk programmer, web developer, dan software engineer di Indonesia." />
 
-                {/* Open Graph / Facebook */}
+                {/* ✅ Enhanced Keywords */}
+                <meta name="keywords" content="karawang developer, komunitas programmer karawang, tech community indonesia, developer indonesia, coding karawang, web developer karawang, software engineer karawang, hackathon karawang, workshop programming, belajar coding, javascript indonesia, react indonesia, nodejs indonesia" />
+
+                <meta name="author" content="KarawangDev Community" />
+                <meta name="creator" content="KarawangDev" />
+                <meta name="publisher" content="KarawangDev Community" />
+
+                {/* ✅ Geographic SEO */}
+                <meta name="geo.region" content="ID-JB" />
+                <meta name="geo.placename" content="Karawang, Jawa Barat, Indonesia" />
+                <meta name="geo.position" content="-6.3066,107.3000" />
+                <meta name="ICBM" content="-6.3066,107.3000" />
+
+                {/* ✅ Enhanced Favicon Set */}
+                <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+                <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+                <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+                <link rel="manifest" href="/favicon/site.webmanifest" />
+                <link rel="shortcut icon" href="/favicon/favicon.ico" />
+                <meta name="msapplication-TileColor" content="#0093E9" />
+                <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
+                <meta name="theme-color" content="#0093E9" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+                <meta name="apple-mobile-web-app-title" content="KarawangDev" />
+
+                {/* ✅ Enhanced Open Graph */}
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="KarawangDev - Komunitas Developer Karawang" />
-                <meta property="og:description" content="Komunitas developer di Karawang untuk berbagi ilmu, berkolaborasi, dan berkembang bersama dalam dunia teknologi." />
-                <meta property="og:image" content="/logo.jpg" />
+                <meta property="og:url" content="https://karawangdev.vercel.app/" />
+                <meta property="og:title" content="KarawangDev - Komunitas Developer Terbesar di Karawang" />
+                <meta property="og:description" content="Bergabung dengan 100+ developer di Karawang! Workshop gratis, hackathon, networking, dan kolaborasi project. Tingkatkan skill coding Anda bersama komunitas tech terdepan." />
+                <meta property="og:image" content="https://karawangdev.vercel.app/og-image.jpg" />
+                <meta property="og:image:secure_url" content="https://karawangdev.vercel.app/og-image.jpg" />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+                <meta property="og:image:alt" content="KarawangDev - Komunitas Developer Karawang" />
+                <meta property="og:site_name" content="KarawangDev" />
+                <meta property="og:locale" content="id_ID" />
+                <meta property="og:locale:alternate" content="en_US" />
 
-                {/* Twitter */}
+                {/* ✅ Enhanced Twitter Cards */}
                 <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site" content="@karawangdev" />
+                <meta name="twitter:creator" content="@karawangdev" />
+                <meta name="twitter:url" content="https://karawangdev.vercel.app/" />
                 <meta name="twitter:title" content="KarawangDev - Komunitas Developer Karawang" />
-                <meta name="twitter:description" content="Komunitas developer di Karawang untuk berbagi ilmu, berkolaborasi, dan berkembang bersama dalam dunia teknologi." />
-                <meta name="twitter:image" content="/logo.jpg" />
+                <meta name="twitter:description" content="100+ developer di Karawang. Workshop, hackathon, networking. Join komunitas tech terdepan!" />
+                <meta name="twitter:image" content="https://karawangdev.vercel.app/twitter-card.jpg" />
+                <meta name="twitter:image:alt" content="KarawangDev Community Logo" />
+
+                {/* ✅ Additional SEO Meta */}
+                <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+                <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+                <meta name="bingbot" content="index, follow" />
+                <link rel="canonical" href="https://karawangdev.vercel.app/" />
+
+                {/* ✅ Preconnect & DNS Prefetch untuk Performance */}
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+                <link rel="dns-prefetch" href="https://vercel.live" />
+
+                {/* ✅ JSON-LD Structured Data */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@graph": [
+                                {
+                                    "@type": "Organization",
+                                    "@id": "https://karawangdev.vercel.app/#organization",
+                                    "name": "KarawangDev",
+                                    "alternateName": ["Karawang Developer Community", "Komunitas Developer Karawang"],
+                                    "url": "https://karawangdev.vercel.app",
+                                    "logo": {
+                                        "@type": "ImageObject",
+                                        "url": "https://karawangdev.vercel.app/logo.webp",
+                                        "width": 512,
+                                        "height": 512
+                                    },
+                                    "description": "Komunitas developer terbesar di Karawang untuk berbagi ilmu, berkolaborasi, dan berkembang bersama dalam dunia teknologi",
+                                    "address": {
+                                        "@type": "PostalAddress",
+                                        "addressLocality": "Karawang",
+                                        "addressRegion": "Jawa Barat",
+                                        "addressCountry": "Indonesia"
+                                    },
+                                    "foundingDate": "2022",
+                                    "memberOf": {
+                                        "@type": "Organization",
+                                        "name": "Indonesian Developer Community"
+                                    },
+                                    "sameAs": [
+                                        "https://instagram.com/karawangdev",
+                                        "https://linkedin.com/company/karawangdev",
+                                        "https://github.com/karawangdev"
+                                    ]
+                                },
+                                {
+                                    "@type": "WebSite",
+                                    "@id": "https://karawangdev.vercel.app/#website",
+                                    "url": "https://karawangdev.vercel.app",
+                                    "name": "KarawangDev - Komunitas Developer Karawang",
+                                    "description": "Website resmi komunitas developer Karawang",
+                                    "publisher": {
+                                        "@id": "https://karawangdev.vercel.app/#organization"
+                                    },
+                                    "inLanguage": "id-ID",
+                                    "potentialAction": {
+                                        "@type": "SearchAction",
+                                        "target": "https://karawangdev.vercel.app/?s={search_term_string}",
+                                        "query-input": "required name=search_term_string"
+                                    }
+                                },
+                                {
+                                    "@type": "CollectionPage",
+                                    "@id": "https://karawangdev.vercel.app/#webpage",
+                                    "url": "https://karawangdev.vercel.app",
+                                    "name": "KarawangDev - Komunitas Developer Karawang",
+                                    "description": "Bergabung dengan komunitas developer terbesar di Karawang. Workshop, hackathon, networking untuk programmer dan software engineer.",
+                                    "isPartOf": {
+                                        "@id": "https://karawangdev.vercel.app/#website"
+                                    },
+                                    "about": {
+                                        "@id": "https://karawangdev.vercel.app/#organization"
+                                    },
+                                    "breadcrumb": {
+                                        "@type": "BreadcrumbList",
+                                        "itemListElement": [
+                                            {
+                                                "@type": "ListItem",
+                                                "position": 1,
+                                                "name": "Home",
+                                                "item": "https://karawangdev.vercel.app"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        })
+                    }}
+                />
+
+                {/* ✅ Google Analytics */}
+                <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', 'GA_MEASUREMENT_ID', {
+                                page_title: 'KarawangDev - Komunitas Developer Karawang',
+                                page_location: 'https://karawangdev.vercel.app'
+                            });
+                        `
+                    }}
+                />
+                <meta name="google-site-verification" content="google-site-verification=Pf7FuUZb82VCPJoQClmYHo-xnxZH-iVb6xoNIt0jRTY" />
             </head>
             <body className={inter.className}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline />
+
+                    {/* ✅ Skip to main content untuk accessibility */}
+                    <a
+                        href="#main-content"
+                        style={{
+                            position: 'absolute',
+                            left: '-9999px',
+                            zIndex: 999999,
+                            padding: '8px 16px',
+                            background: '#000',
+                            color: '#fff',
+                            textDecoration: 'none'
+                        }}
+                        onFocus={(e) => e.target.style.left = '6px'}
+                        onBlur={(e) => e.target.style.left = '-9999px'}
+                    >
+                        Skip to main content
+                    </a>
+
                     <Navbar />
-                    <main style={{
-                        paddingTop: '70px', // To prevent content from hiding behind fixed navbar
-                        minHeight: '100vh'
-                    }}>
+                    <main
+                        id="main-content"
+                        style={{
+                            paddingTop: '70px',
+                            minHeight: '100vh'
+                        }}
+                    >
                         {children}
                     </main>
                     <Footer />
                     <ScrollToTopButton />
                     <InteractiveTerminal />
+                    <SpeedInsights />
                 </ThemeProvider>
             </body>
         </html>

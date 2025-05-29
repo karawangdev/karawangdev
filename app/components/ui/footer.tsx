@@ -41,7 +41,7 @@ const Footer = () => {
 
     const socialIconVariants = {
         hidden: { scale: 0 },
-        visible: i => ({
+        visible: (i: number) => ({
             scale: 1,
             transition: {
                 type: "spring",
@@ -86,11 +86,15 @@ const Footer = () => {
                             <motion.div variants={itemVariants}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                                     <Image
-                                        src="/logo-darkbg.jpg"
-                                        alt="KarawanDev Logo"
+                                        src="/logo.webp"
+                                        alt="KarawangDev Logo"
                                         width={50}
                                         height={50}
-                                        style={{ objectFit: 'contain' }}
+                                        style={{
+                                            objectFit: 'contain',
+                                            filter: 'brightness(0) invert(1)',
+                                            transition: 'all 0.3s ease'
+                                        }}
                                     />
                                     <Typography
                                         variant="h6"
@@ -118,44 +122,48 @@ const Footer = () => {
                                     Komunitas pecinta teknologi, pengembang, dan inovator di Karawang
                                 </Typography>
                             </motion.div>
+
+                            {/* Fixed Social Links - Disable Facebook and Twitter */}
                             <Box sx={{ display: 'flex', mt: 2 }}>
                                 {[
-                                    { icon: <Facebook />, url: 'https://facebook.com', i: 0 },
-                                    { icon: <Twitter />, url: 'https://twitter.com', i: 1 },
-                                    { icon: <Instagram />, url: 'https://instagram.com', i: 2 },
-                                    { icon: <LinkedIn />, url: 'https://linkedin.com/karawangdev', i: 3 },
-                                    { icon: <GitHub />, url: 'https://github.com/karawangdev', i: 4 }
+                                    { icon: <Facebook />, url: null, i: 0, disabled: true }, // ✅ Nonaktifkan Facebook
+                                    { icon: <Twitter />, url: null, i: 1, disabled: true }, // ✅ Nonaktifkan Twitter
+                                    { icon: <Instagram />, url: 'https://instagram.com/karawangdev', i: 2, disabled: false },
+                                    { icon: <LinkedIn />, url: 'https://linkedin.com/company/karawangdev', i: 3, disabled: false },
+                                    { icon: <GitHub />, url: 'https://github.com/karawangdev', i: 4, disabled: false }
                                 ].map((social) => (
                                     <motion.div
-                                        key={social.url}
+                                        key={social.i}
                                         variants={socialIconVariants}
                                         custom={social.i}
-                                        whileHover="hover"
+                                        whileHover={social.disabled ? undefined : "hover"} // ✅ Disable hover jika disabled
                                     >
-                                        <Link href={social.url} passHref>
-                                            <Box
-                                                component="a"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                sx={{
-                                                    color: 'white',
-                                                    mr: 2,
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    p: 1,
-                                                    borderRadius: '50%',
-                                                    bgcolor: 'rgba(255,255,255,0.05)',
-                                                    transition: 'all 0.3s',
-                                                    '&:hover': {
-                                                        bgcolor: 'rgba(254, 107, 139, 0.3)',
-                                                        boxShadow: '0 0 15px rgba(254, 107, 139, 0.5)'
-                                                    }
-                                                }}
-                                            >
-                                                {social.icon}
-                                            </Box>
-                                        </Link>
+                                        <Box
+                                            component={social.disabled ? "div" : "a"} // ✅ Gunakan div jika disabled
+                                            href={social.disabled ? undefined : social.url} // ✅ No href jika disabled
+                                            target={social.disabled ? undefined : "_blank"}
+                                            rel={social.disabled ? undefined : "noopener noreferrer"}
+                                            sx={{
+                                                color: social.disabled ? 'rgba(255,255,255,0.3)' : 'white', // ✅ Warna lebih redup jika disabled
+                                                mr: 2,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                p: 1,
+                                                borderRadius: '50%',
+                                                bgcolor: social.disabled ? 'rgba(255,255,255,0.02)' : 'rgba(255,255,255,0.05)', // ✅ Background lebih redup
+                                                transition: 'all 0.3s',
+                                                textDecoration: 'none',
+                                                cursor: social.disabled ? 'not-allowed' : 'pointer', // ✅ Cursor not-allowed
+                                                opacity: social.disabled ? 0.5 : 1, // ✅ Opacity lebih rendah
+                                                '&:hover': social.disabled ? {} : { // ✅ No hover effect jika disabled
+                                                    bgcolor: 'rgba(254, 107, 139, 0.3)',
+                                                    boxShadow: '0 0 15px rgba(254, 107, 139, 0.5)'
+                                                }
+                                            }}
+                                        >
+                                            {social.icon}
+                                        </Box>
                                     </motion.div>
                                 ))}
                             </Box>
@@ -188,16 +196,21 @@ const Footer = () => {
                                 </Typography>
                             </motion.div>
                             <Box component="ul" sx={{ p: 0, m: 0, listStyle: 'none' }}>
-                                {['Home', 'About', 'Events', 'Join'].map((item, i) => (
+                                {[
+                                    { name: 'Home', href: '/' },
+                                    { name: 'About', href: '/about' },
+                                    { name: 'Events', href: '/events' },
+                                    { name: 'Join', href: '/join' }
+                                ].map((item, i) => (
                                     <motion.li
-                                        key={item}
+                                        key={item.name}
                                         variants={itemVariants}
                                         custom={i}
                                         style={{ marginBottom: '12px' }}
                                     >
-                                        <Link href={`/${item.toLowerCase() === 'home' ? '' : item.toLowerCase()}`} passHref>
+                                        <Link href={item.href} passHref>
                                             <Box
-                                                component="a"
+                                                component="span"
                                                 sx={{
                                                     color: 'rgba(255,255,255,0.8)',
                                                     textDecoration: 'none',
@@ -207,6 +220,7 @@ const Footer = () => {
                                                     display: 'flex',
                                                     alignItems: 'center',
                                                     transition: 'all 0.3s',
+                                                    cursor: 'pointer',
                                                     '&:hover': {
                                                         color: '#0093E9',
                                                         transform: 'translateX(5px)'
@@ -219,7 +233,7 @@ const Footer = () => {
                                                     }
                                                 }}
                                             >
-                                                {item}
+                                                {item.name}
                                             </Box>
                                         </Link>
                                     </motion.li>
@@ -366,6 +380,7 @@ const Footer = () => {
                     <Typography
                         variant="body2"
                         align="center"
+                        component="div"
                         sx={{
                             color: 'rgba(255,255,255,0.6)',
                             fontFamily: montserratFont,
@@ -381,31 +396,31 @@ const Footer = () => {
                         }}
                     >
                         <Box component="span">untuk kerjasama, sponsorship atau kebutuhan media:</Box>
-                        <Link href="mailto:karawangdevs@gmail.com" passHref>
-                            <Box
-                                component="a"
-                                sx={{
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    color: '#FE6B8B',
-                                    textDecoration: 'none',
-                                    transition: 'all 0.3s',
-                                    fontWeight: 600,
-                                    '&:hover': {
-                                        color: '#FF8E53',
-                                        transform: 'translateY(-2px)'
-                                    }
-                                }}
-                            >
-                                karawangdevs@gmail.com
-                            </Box>
-                        </Link>
+                        <Box
+                            component="a"
+                            href="mailto:karawangdevs@gmail.com"
+                            sx={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                color: '#FE6B8B',
+                                textDecoration: 'none',
+                                transition: 'all 0.3s',
+                                fontWeight: 600,
+                                '&:hover': {
+                                    color: '#FF8E53',
+                                    transform: 'translateY(-2px)'
+                                }
+                            }}
+                        >
+                            karawangdevs@gmail.com
+                        </Box>
                     </Typography>
 
                     {/* Open Source GitHub Message */}
                     <Typography
                         variant="body2"
                         align="center"
+                        component="div"
                         sx={{
                             color: 'rgba(255,255,255,0.6)',
                             fontFamily: montserratFont,
@@ -418,26 +433,25 @@ const Footer = () => {
                         }}
                     >
                         <Box component="span">Website ini open-source di</Box>
-                        <Link href="https://github.com/karawangdev/karawangdev" passHref>
-                            <Box
-                                component="a"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                sx={{
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    color: '#0093E9',
-                                    textDecoration: 'none',
-                                    transition: 'all 0.3s',
-                                    '&:hover': {
-                                        color: '#80D0C7',
-                                    }
-                                }}
-                            >
-                                <GitHub sx={{ fontSize: 16, mr: 0.5 }} />
-                                GitHub
-                            </Box>
-                        </Link>
+                        <Box
+                            component="a"
+                            href="https://github.com/karawangdev/karawangdev"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                color: '#0093E9',
+                                textDecoration: 'none',
+                                transition: 'all 0.3s',
+                                '&:hover': {
+                                    color: '#80D0C7',
+                                }
+                            }}
+                        >
+                            <GitHub sx={{ fontSize: 16, mr: 0.5 }} />
+                            GitHub
+                        </Box>
                     </Typography>
                 </motion.div>
             </Container>

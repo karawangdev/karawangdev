@@ -103,7 +103,7 @@ export default function Navbar() {
                     >
                         <Link href="/" passHref style={{ display: 'flex', alignItems: 'center' }}>
                             <Image
-                                src="/logo.jpg"
+                                src="/logo.webp"
                                 alt="Karawang Dev Logo"
                                 width={45}
                                 height={45}
@@ -298,7 +298,7 @@ export default function Navbar() {
                     <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1.5 }}>
                         <Link href="/" passHref style={{ display: 'flex', alignItems: 'center' }}>
                             <Image
-                                src="/logo.jpg"
+                                src="/logo.webp"
                                 alt="Karawang Dev Logo"
                                 width={36}
                                 height={36}

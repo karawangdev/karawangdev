@@ -10,8 +10,8 @@ import AboutCtaSection from '@/app/components/about/AboutCtaSection';
 export default function AboutPage() {
     return (
         <>
-            <AboutHeroSection />
             <AboutStorySection />
+            <AboutHeroSection />
             <AboutMissionVisionSection />
             <AboutCoreValuesSection />
             <AboutJourneySection />

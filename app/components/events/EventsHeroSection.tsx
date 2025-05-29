@@ -224,7 +224,7 @@ export default function EventsHeroSection() {
                                 }}
                             >
                                 <Image
-                                    src="/events-illustration.svg"
+                                    src="/community-event.jpg"
                                     alt="Event Komunitas Developer Karawang"
                                     fill
                                     style={{ objectFit: 'contain' }}
