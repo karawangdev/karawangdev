@@ -26,8 +26,8 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
         console.error('Error caught by boundary:', error, errorInfo);
 
         // Track error in analytics
-        if (typeof window !== 'undefined' && window.gtag) {
-            window.gtag('event', 'exception', {
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'exception', {
                 description: error.message,
                 fatal: false
             });
@@ -56,7 +56,11 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
                     </Typography>
                     <Button
                         variant="contained"
-                        onClick={() => window.location.reload()}
+                        onClick={() => {
+                            if (typeof window !== 'undefined') {
+                                window.location.reload();
+                            }
+                        }}
                         sx={{ mt: 2 }}
                     >
                         Refresh Page

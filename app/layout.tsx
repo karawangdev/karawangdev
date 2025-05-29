@@ -1,7 +1,7 @@
 'use client';
 
 import { Inter } from 'next/font/google';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -33,11 +33,13 @@ const theme = createTheme({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     useEffect(() => {
-        AOS.init({
-            duration: 800,
-            once: false,
-            mirror: true,
-        });
+        if (typeof window !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                once: false,
+                mirror: true,
+            });
+        }
     }, []);
 
     return (
@@ -284,7 +286,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ErrorBoundary>
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
-                        <CommunityAnalytics />
+
+                        {/* ✅ Wrap Analytics in Suspense */}
+                        <Suspense fallback={null}>
+                            <CommunityAnalytics />
+                        </Suspense>
 
                         <a
                             href="#main-content"

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 declare global {
@@ -9,9 +9,33 @@ declare global {
     }
 }
 
+// Separate component for search params
+function SearchParamsTracker() {
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        // Track UTM parameters if present
+        const utmSource = searchParams.get('utm_source');
+        const utmMedium = searchParams.get('utm_medium');
+        const utmCampaign = searchParams.get('utm_campaign');
+
+        if (utmSource && typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'utm_tracking', {
+                event_category: 'marketing',
+                event_label: `${utmSource}_${utmMedium}`,
+                utm_source: utmSource,
+                utm_medium: utmMedium,
+                utm_campaign: utmCampaign,
+                traffic_type: 'campaign'
+            });
+        }
+    }, [searchParams]);
+
+    return null;
+}
+
 export default function CommunityAnalytics() {
     const pathname = usePathname();
-    const searchParams = useSearchParams();
 
     useEffect(() => {
         if (typeof window !== 'undefined' && window.gtag) {
@@ -28,10 +52,12 @@ export default function CommunityAnalytics() {
             // Track specific community events
             trackCommunityEvents(pathname);
         }
-    }, [pathname, searchParams]);
+    }, [pathname]);
 
     // Track page scroll depth
     useEffect(() => {
+        if (typeof window === 'undefined') return;
+
         let maxScroll = 0;
         const handleScroll = () => {
             const scrollPercent = Math.round(
@@ -54,19 +80,23 @@ export default function CommunityAnalytics() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    return null;
+    return (
+        <Suspense fallback={null}>
+            <SearchParamsTracker />
+        </Suspense>
+    );
 }
 
 // Helper functions
 function getPageTitle(path: string): string {
-    const titles = {
+    const titles: { [key: string]: string } = {
         '/': 'KarawangDev - Homepage',
         '/about': 'About KarawangDev Community',
         '/events': 'Events & Workshops',
         '/community': 'Community Members',
         '/contact': 'Contact KarawangDev'
     };
-    return titles[path as keyof typeof titles] || `KarawangDev - ${path}`;
+    return titles[path] || `KarawangDev - ${path}`;
 }
 
 function getPageCategory(path: string): string {
