@@ -207,7 +207,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         `
                     }}
                 />
-                <meta name="google-site-verification" content="google-site-verification=Pf7FuUZb82VCPJoQClmYHo-xnxZH-iVb6xoNIt0jRTY" />
+                <meta name="google-site-verification" content="v4CtYH7Fv6frBPdYa1_Xc4-mwbdHxCEGrjPX5lxFF-k" />
             </head>
             <body className={inter.className}>
                 <ThemeProvider theme={theme}>
