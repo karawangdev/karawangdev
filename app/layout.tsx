@@ -12,6 +12,8 @@ import Navbar from './components/ui/navbar';
 import Footer from './components/ui/footer';
 import ScrollToTopButton from './components/ui/ScrollToTopButton';
 import InteractiveTerminal from './components/ui/InteractiveTerminal';
+import CommunityAnalytics from './components/analytics/CommunityAnalytics';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -44,6 +46,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
+                {/* ✅ Critical Missing Meta Tags */}
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="format-detection" content="telephone=no" />
+                <meta name="mobile-web-app-capable" content="yes" />
+                <meta name="application-name" content="KarawangDev" />
+
+                {/* ✅ Language & Locale */}
+                <meta httpEquiv="Content-Language" content="id" />
+                <meta name="language" content="Indonesian" />
+
+                {/* ✅ Security Headers */}
+                <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+                <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+
                 {/* ✅ Enhanced Title & Description */}
                 <title>KarawangDev - Komunitas Developer Karawang | Tech Community Indonesia</title>
                 <meta name="description" content="Bergabung dengan KarawangDev, komunitas developer terbesar di Karawang! Workshop, hackathon, networking, dan kolaborasi untuk programmer, web developer, dan software engineer di Indonesia." />
@@ -71,8 +87,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
                 <meta name="theme-color" content="#0093E9" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
-                <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
                 <meta name="apple-mobile-web-app-title" content="KarawangDev" />
+                <meta name="msapplication-starturl" content="/" />
+                <meta name="msapplication-window" content="width=1024;height=768" />
+                <meta name="msapplication-navbutton-color" content="#0093E9" />
 
                 {/* ✅ Enhanced Open Graph */}
                 <meta property="og:type" content="website" />
@@ -104,11 +123,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <meta name="bingbot" content="index, follow" />
                 <link rel="canonical" href="https://karawangdev.vercel.app/" />
 
+                {/* ✅ HREFLANG untuk Multi-language SEO */}
+                <link rel="alternate" hrefLang="id" href="https://karawangdev.vercel.app/" />
+                <link rel="alternate" hrefLang="en" href="https://karawangdev.vercel.app/en" />
+                <link rel="alternate" hrefLang="x-default" href="https://karawangdev.vercel.app/" />
+
                 {/* ✅ Preconnect & DNS Prefetch untuk Performance */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link rel="dns-prefetch" href="https://www.google-analytics.com" />
                 <link rel="dns-prefetch" href="https://vercel.live" />
+
+                {/* ✅ Preload Critical Resources */}
+                <link rel="preload" href="/logo.webp" as="image" type="image/webp" />
+                <link rel="preload" href="/favicon/favicon.ico" as="image" type="image/x-icon" />
+
+                {/* ✅ Resource Hints */}
+                <link rel="prefetch" href="/about" />
+                <link rel="prefetch" href="/events" />
+                <link rel="prefetch" href="/community" />
 
                 {/* ✅ JSON-LD Structured Data */}
                 <script
@@ -136,7 +169,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                                         "addressRegion": "Jawa Barat",
                                         "addressCountry": "Indonesia"
                                     },
-                                    "foundingDate": "2022",
+                                    "foundingDate": "2025",
                                     "memberOf": {
                                         "@type": "Organization",
                                         "name": "Indonesian Developer Community"
@@ -192,60 +225,100 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     }}
                 />
 
-                {/* ✅ Google Analytics */}
-                <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+                {/* ✅ GOOGLE ANALYTICS 4 - REAL TRACKING CODE */}
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZLPHW3KE9"></script>
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
                             window.dataLayer = window.dataLayer || [];
                             function gtag(){dataLayer.push(arguments);}
                             gtag('js', new Date());
-                            gtag('config', 'GA_MEASUREMENT_ID', {
+                            
+                            gtag('config', 'G-DZLPHW3KE9', {
                                 page_title: 'KarawangDev - Komunitas Developer Karawang',
-                                page_location: 'https://karawangdev.vercel.app'
+                                page_location: 'https://karawangdev.vercel.app',
+                                send_page_view: true,
+                                cookie_flags: 'SameSite=None;Secure',
+                                custom_map: {
+                                    'community_type': 'tech_developer',
+                                    'location': 'karawang_indonesia',
+                                    'website_section': 'main_site'
+                                }
+                            });
+                            
+                            // Enhanced tracking for community website
+                            gtag('event', 'page_view', {
+                                event_category: 'engagement',
+                                event_label: 'karawangdev_homepage',
+                                custom_parameter_1: 'community_website',
+                                custom_parameter_2: 'developer_hub'
+                            });
+                            
+                            // Track community-specific events
+                            gtag('event', 'community_visit', {
+                                event_category: 'community',
+                                event_label: 'website_visit',
+                                community_name: 'KarawangDev',
+                                visit_type: 'organic'
                             });
                         `
                     }}
                 />
+
+                {/* ✅ SEMUA VERIFICATION TAGS */}
                 <meta name="google-site-verification" content="v4CtYH7Fv6frBPdYa1_Xc4-mwbdHxCEGrjPX5lxFF-k" />
+
+                {/* ✅ Bing Webmaster Tools */}
+                <meta name="msvalidate.01" content="TAMBAHKAN_BING_VERIFICATION_CODE" />
+
+                {/* ✅ Yandex Webmaster */}
+                <meta name="yandex-verification" content="d90ae94a6693288b" />
+
+                {/* ✅ Facebook Domain Verification */}
+                <meta name="facebook-domain-verification" content="TAMBAHKAN_FB_CODE" />
+
+                {/* ✅ Pinterest */}
+                <meta name="p:domain_verify" content="TAMBAHKAN_PINTEREST_CODE" />
             </head>
             <body className={inter.className}>
-                <ThemeProvider theme={theme}>
-                    <CssBaseline />
+                <ErrorBoundary>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <CommunityAnalytics />
 
-                    {/* ✅ Skip to main content untuk accessibility */}
-                    <a
-                        href="#main-content"
-                        style={{
-                            position: 'absolute',
-                            left: '-9999px',
-                            zIndex: 999999,
-                            padding: '8px 16px',
-                            background: '#000',
-                            color: '#fff',
-                            textDecoration: 'none'
-                        }}
-                        onFocus={(e) => e.target.style.left = '6px'}
-                        onBlur={(e) => e.target.style.left = '-9999px'}
-                    >
-                        Skip to main content
-                    </a>
+                        <a
+                            href="#main-content"
+                            style={{
+                                position: 'absolute',
+                                left: '-9999px',
+                                zIndex: 999999,
+                                padding: '8px 16px',
+                                background: '#000',
+                                color: '#fff',
+                                textDecoration: 'none'
+                            }}
+                            onFocus={(e) => (e.target as HTMLElement).style.left = '6px'}
+                            onBlur={(e) => (e.target as HTMLElement).style.left = '-9999px'}
+                        >
+                            Skip to main content
+                        </a>
 
-                    <Navbar />
-                    <main
-                        id="main-content"
-                        style={{
-                            paddingTop: '70px',
-                            minHeight: '100vh'
-                        }}
-                    >
-                        {children}
-                    </main>
-                    <Footer />
-                    <ScrollToTopButton />
-                    <InteractiveTerminal />
-                    <SpeedInsights />
-                </ThemeProvider>
+                        <Navbar />
+                        <main
+                            id="main-content"
+                            style={{
+                                paddingTop: '70px',
+                                minHeight: '100vh'
+                            }}
+                        >
+                            {children}
+                        </main>
+                        <Footer />
+                        <ScrollToTopButton />
+                        <InteractiveTerminal />
+                        <SpeedInsights />
+                    </ThemeProvider>
+                </ErrorBoundary>
             </body>
         </html>
     );
