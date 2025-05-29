@@ -20,7 +20,6 @@ module.exports = {
         ]
     },
 
-    // ✅ Enhanced transform dengan metadata lengkap
     transform: async (config, path) => {
         const customPriority = {
             '/': 1.0,
@@ -48,47 +47,26 @@ module.exports = {
             loc: path,
             changefreq: customChangefreq[path] || config.changefreq,
             priority: customPriority[path] || config.priority,
-            lastmod: new Date().toISOString(),
-            // ✅ Add images for specific pages
-            images: path === '/' ? [
-                {
-                    loc: 'https://karawangdev.vercel.app/logo.webp',
-                    title: 'KarawangDev Logo',
-                    caption: 'Logo komunitas developer Karawang'
-                },
-                {
-                    loc: 'https://karawangdev.vercel.app/og-image.jpg',
-                    title: 'KarawangDev Community Banner',
-                    caption: 'Banner komunitas developer Karawang dengan 100+ members'
-                }
-            ] : []
+            lastmod: new Date().toISOString()
         };
     },
 
-    // ✅ Additional sitemaps for different content types
     additionalPaths: async (config) => {
-        const additionalPaths = [];
-
-        // Add dynamic routes if any
-        // const events = await fetchEvents();
-        // events.forEach(event => {
-        //     additionalPaths.push({
-        //         loc: `/events/${event.slug}`,
-        //         changefreq: 'weekly',
-        //         priority: 0.6,
-        //         lastmod: event.updatedAt
-        //     });
-        // });
+        const additionalPaths = [
+            {
+                loc: '/workshop',
+                changefreq: 'weekly',
+                priority: 0.8,
+                lastmod: new Date().toISOString()
+            },
+            {
+                loc: '/join',
+                changefreq: 'monthly',
+                priority: 0.8,
+                lastmod: new Date().toISOString()
+            }
+        ];
 
         return additionalPaths;
     }
 };
-
-{
-    "scripts": {
-        "build": "next build",
-            "postbuild": "next-sitemap",
-                "sitemap": "next-sitemap",
-                    "sitemap:dev": "next-sitemap --config next-sitemap.config.js"
-    }
-}
