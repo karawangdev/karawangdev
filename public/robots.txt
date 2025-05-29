@@ -1,14 +1,21 @@
 # *
 User-agent: *
 Allow: /
+
+# High-priority pages
+Allow: /about
+Allow: /events
+Allow: /community
+Allow: /contact
+
+# Block unnecessary crawling
 Disallow: /api/
 Disallow: /_next/
 Disallow: /admin/
 Disallow: /private/
 
-# Host
-Host: https://karawangdev.vercel.app
-
-# Sitemaps
+# Sitemap location
 Sitemap: https://karawangdev.vercel.app/sitemap.xml
-Sitemap: https://karawangdev.vercel.app/sitemap-0.xml
+
+# Crawl delay
+Crawl-delay: 1

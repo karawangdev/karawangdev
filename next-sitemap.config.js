@@ -5,6 +5,7 @@ module.exports = {
     sitemapSize: 7000,
     changefreq: 'weekly',
     priority: 0.7,
+    trailingSlash: false, // ✅ Fix trailing slash issue
     exclude: ['/api/*', '/admin/*', '/_next/*', '/404', '/500'],
 
     robotsTxtOptions: {
@@ -51,22 +52,10 @@ module.exports = {
         };
     },
 
+    // ✅ Remove additionalPaths untuk avoid duplicates
     additionalPaths: async (config) => {
-        const additionalPaths = [
-            {
-                loc: '/workshop',
-                changefreq: 'weekly',
-                priority: 0.8,
-                lastmod: new Date().toISOString()
-            },
-            {
-                loc: '/join',
-                changefreq: 'monthly',
-                priority: 0.8,
-                lastmod: new Date().toISOString()
-            }
+        return [
+            // Add any dynamic routes here if needed
         ];
-
-        return additionalPaths;
     }
 };
