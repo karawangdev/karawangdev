@@ -19,16 +19,11 @@ export default class ErrorBoundary extends Component<Props, State> {
     }
 
     static getDerivedStateFromError(error: Error): State {
-        // Update state so the next render will show the fallback UI
         return { hasError: true, error };
     }
 
     componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-        // Log error to console or external service
         console.error('ErrorBoundary caught an error:', error, errorInfo);
-
-        // You can also log the error to an error reporting service here
-        // Example: Sentry.captureException(error);
     }
 
     handleReset = () => {
@@ -55,43 +50,15 @@ export default class ErrorBoundary extends Component<Props, State> {
 
                     <Typography variant="body1" sx={{ mb: 3, maxWidth: 600 }}>
                         Mohon maaf, terjadi kesalahan yang tidak terduga.
-                        Tim kami telah diberitahu dan sedang memperbaikinya.
                     </Typography>
 
-                    {process.env.NODE_ENV === 'development' && this.state.error && (
-                        <Box
-                            sx={{
-                                backgroundColor: '#f5f5f5',
-                                p: 2,
-                                borderRadius: 1,
-                                mb: 3,
-                                maxWidth: 800,
-                                overflow: 'auto'
-                            }}
-                        >
-                            <Typography variant="caption" component="pre">
-                                {this.state.error.toString()}
-                            </Typography>
-                        </Box>
-                    )}
-
-                    <Box sx={{ display: 'flex', gap: 2 }}>
-                        <Button
-                            variant="contained"
-                            onClick={this.handleReset}
-                            color="primary"
-                        >
-                            Coba Lagi
-                        </Button>
-
-                        <Button
-                            variant="outlined"
-                            onClick={() => window.location.reload()}
-                            color="secondary"
-                        >
-                            Refresh Halaman
-                        </Button>
-                    </Box>
+                    <Button
+                        variant="contained"
+                        onClick={() => window.location.reload()}
+                        color="primary"
+                    >
+                        Refresh Halaman
+                    </Button>
                 </Box>
             );
         }

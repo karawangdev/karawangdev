@@ -12,22 +12,37 @@ const nextConfig: NextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // ✅ Tambahkan localhost untuk development
-    domains: ['localhost', 'karawangdev.vercel.app'],
-    minimumCacheTTL: 31536000, // 1 year
-    // ✅ Tambahkan untuk debug
+    // ✅ Ganti domains dengan remotePatterns
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'karawangdev.vercel.app',
+        pathname: '/**',
+      },
+    ],
+    minimumCacheTTL: 31536000,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  // ✅ Hanya untuk production
-  output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
+  // ✅ Disable output untuk development
+  output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
   trailingSlash: true,
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['@mui/material', '@mui/icons-material'],
   },
   compress: true,
+  // ✅ Disable redirects untuk development
   async redirects() {
+    if (process.env.NODE_ENV === 'development') {
+      return [];
+    }
     return [
       {
         source: '/:path*',
@@ -36,11 +51,6 @@ const nextConfig: NextConfig = {
             type: 'header',
             key: 'x-forwarded-proto',
             value: 'http',
-          },
-          // ✅ Exclude localhost dari redirect
-          {
-            type: 'host',
-            value: '(?!localhost).*',
           },
         ],
         destination: 'https://karawangdev.vercel.app/:path*',
@@ -53,7 +63,6 @@ const nextConfig: NextConfig = {
       {
         source: '/(.*)',
         headers: [
-          // ✅ Conditional HSTS - hanya untuk production
           ...(process.env.NODE_ENV === 'production' ? [{
             key: 'Strict-Transport-Security',
             value: 'max-age=31536000; includeSubDomains; preload'
@@ -83,7 +92,6 @@ const nextConfig: NextConfig = {
     ];
   },
   webpack: (config, { isServer }) => {
-    // ✅ Fix client-side fallbacks
     if (!isServer) {
       config.resolve = config.resolve || {};
       config.resolve.fallback = {
@@ -93,7 +101,6 @@ const nextConfig: NextConfig = {
         tls: false,
       };
     }
-
     return config;
   },
 };
