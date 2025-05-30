@@ -1,20 +1,11 @@
-'use client';
-
 import { Inter } from 'next/font/google';
-import { useEffect, Suspense } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import Navbar from './components/ui/navbar';
 import Footer from './components/ui/footer';
-import ScrollToTopButton from './components/ui/ScrollToTopButton';
-import InteractiveTerminal from './components/ui/InteractiveTerminal';
-import CommunityAnalytics from './components/analytics/CommunityAnalytics';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import SecurityHeaders from './components/security/SecurityHeaders';
+import ClientProviders from './components/providers/ClientProviders';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,17 +23,8 @@ const theme = createTheme({
     },
 });
 
+// ✅ REMOVE 'use client' from layout
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            AOS.init({
-                duration: 800,
-                once: false,
-                mirror: true,
-            });
-        }
-    }, []);
-
     return (
         <html lang="id">
             <head>
@@ -284,35 +266,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <meta name="p:domain_verify" content="TAMBAHKAN_PINTEREST_CODE" />
             </head>
             <body className={inter.className}>
-                <ErrorBoundary>
-                    <ThemeProvider theme={theme}>
-                        <CssBaseline />
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
 
-                        {/* ✅ Add Security Headers Component */}
-                        <SecurityHeaders />
-
-                        {/* ✅ Wrap Analytics in Suspense */}
-                        <Suspense fallback={null}>
-                            <CommunityAnalytics />
-                        </Suspense>
-
-                        <a
-                            href="#main-content"
-                            style={{
-                                position: 'absolute',
-                                left: '-9999px',
-                                zIndex: 999999,
-                                padding: '8px 16px',
-                                background: '#000',
-                                color: '#fff',
-                                textDecoration: 'none'
-                            }}
-                            onFocus={(e) => (e.target as HTMLElement).style.left = '6px'}
-                            onBlur={(e) => (e.target as HTMLElement).style.left = '-9999px'}
-                        >
-                            Skip to main content
-                        </a>
-
+                    {/* ✅ WRAP CLIENT-SIDE CODE */}
+                    <ClientProviders>
                         <Navbar />
                         <main
                             id="main-content"
@@ -324,11 +282,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             {children}
                         </main>
                         <Footer />
-                        <ScrollToTopButton />
-                        <InteractiveTerminal />
-                        <SpeedInsights />
-                    </ThemeProvider>
-                </ErrorBoundary>
+                    </ClientProviders>
+
+                    <SpeedInsights />
+                </ThemeProvider>
             </body>
         </html>
     );

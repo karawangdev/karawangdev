@@ -14,14 +14,13 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     domains: ['karawangdev.vercel.app'],
     minimumCacheTTL: 31536000, // 1 year
-    unoptimized: true,
   },
   output: 'standalone',
   trailingSlash: true,
   experimental: {
-    forceSwcTransforms: true,
     optimizeCss: true,
     optimizePackageImports: ['@mui/material', '@mui/icons-material'],
+    serverComponentsExternalPackages: ['framer-motion'],
   },
   compress: true,
   async redirects() {
@@ -74,36 +73,25 @@ const nextConfig: NextConfig = {
     ];
   },
   webpack: (config, { isServer }) => {
+    // ✅ Fix "self is not defined" error
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
         fs: false,
+        net: false,
+        tls: false,
       };
     }
 
-    // ✅ OPTIMIZE BUNDLE
-    config.optimization = {
-      ...config.optimization,
-      splitChunks: {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-          mui: {
-            test: /[\\/]node_modules[\\/]@mui[\\/]/,
-            name: 'mui',
-            chunks: 'all',
-          },
-        },
-      },
-    };
+    // ✅ Fix framer-motion SSR issues
+    config.externals = config.externals || [];
+    config.externals.push({
+      'framer-motion': 'framer-motion'
+    });
 
     return config;
   },
-  swcMinify: true,
+  transpilePackages: ['framer-motion'],
 };
 
 export default nextConfig;
