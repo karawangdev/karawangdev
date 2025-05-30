@@ -20,7 +20,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['@mui/material', '@mui/icons-material'],
-    serverComponentsExternalPackages: ['framer-motion'],
   },
   compress: true,
   async redirects() {
@@ -73,8 +72,9 @@ const nextConfig: NextConfig = {
     ];
   },
   webpack: (config, { isServer }) => {
-    // ✅ Fix "self is not defined" error
+    // ✅ Fix client-side fallbacks
     if (!isServer) {
+      config.resolve = config.resolve || {};
       config.resolve.fallback = {
         ...config.resolve.fallback,
         fs: false,
@@ -83,15 +83,8 @@ const nextConfig: NextConfig = {
       };
     }
 
-    // ✅ Fix framer-motion SSR issues
-    config.externals = config.externals || [];
-    config.externals.push({
-      'framer-motion': 'framer-motion'
-    });
-
     return config;
   },
-  transpilePackages: ['framer-motion'],
 };
 
 export default nextConfig;
