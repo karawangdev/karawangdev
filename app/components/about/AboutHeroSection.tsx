@@ -92,7 +92,7 @@ export default function AboutTeamSection() {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundImage: 'url("/subtle-pattern.png")',
+                    backgroundImage: 'url("/subtle-pattern.webp")',
                     backgroundSize: '1000px',
                     opacity: 0.2,
                     pointerEvents: 'none'

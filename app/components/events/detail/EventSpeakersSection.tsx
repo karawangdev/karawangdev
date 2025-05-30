@@ -61,7 +61,7 @@ export default function EventSpeakersSection({ speakers }: { speakers: any[] }) 
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundImage: 'url("/subtle-pattern.png")',
+                    backgroundImage: 'url("/subtle-pattern.webp")',
                     backgroundSize: '1000px',
                     opacity: 0.1, // Same opacity as other sections
                     pointerEvents: 'none'
@@ -164,7 +164,7 @@ export default function EventSpeakersSection({ speakers }: { speakers: any[] }) 
                             company: "PT Tech Indonesia",
                             experience: 8,
                             bio: "Berpengalaman dalam pengembangan aplikasi web modern dengan React, Node.js, dan teknologi cloud.",
-                            image: "/speaker-male.jpg"
+                            image: "/speaker-male.webp"
                         },
                         {
                             name: "Sari Dewi",
@@ -172,7 +172,7 @@ export default function EventSpeakersSection({ speakers }: { speakers: any[] }) 
                             company: "Digital Creative Studio",
                             experience: 6,
                             bio: "Spesialis dalam desain antarmuka pengguna dan pengalaman pengguna untuk aplikasi mobile dan web.",
-                            image: "/speaker-female.jpg"
+                            image: "/speaker-female.webp"
                         },
                         {
                             name: "Ahmad Rahman",
@@ -180,7 +180,7 @@ export default function EventSpeakersSection({ speakers }: { speakers: any[] }) 
                             company: "Cloud Solutions Corp",
                             experience: 10,
                             bio: "Ahli dalam implementasi CI/CD, containerization, dan infrastruktur cloud modern.",
-                            image: "/speaker-male.jpg"
+                            image: "/speaker-male.webp"
                         }
                     ]).map((speaker, index) => (
                         <Grid item xs={12} sm={6} md={4} key={index}>

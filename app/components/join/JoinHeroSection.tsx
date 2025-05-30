@@ -34,7 +34,7 @@ export default function JoinHeroSection({ onStartProcess }: JoinHeroSectionProps
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundImage: 'url("/subtle-pattern.png")',
+                    backgroundImage: 'url("/subtle-pattern.webp")',
                     backgroundSize: '1000px', // Same as HeroSection
                     opacity: 0.2, // Same as HeroSection
                     pointerEvents: 'none'

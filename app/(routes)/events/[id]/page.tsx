@@ -32,14 +32,14 @@ const eventsData = {
                 role: "Senior Frontend Developer",
                 company: "Tech Innovations",
                 bio: "10+ tahun pengalaman dalam pengembangan frontend, spesialisasi dalam ekosistem React",
-                image: "/speaker-male.png"
+                image: "/speaker-male.webp"
             },
             {
                 name: "Dewi Putri",
                 role: "UI/UX Designer",
                 company: "Creative Solutions",
                 bio: "Designer pemenang penghargaan dengan keahlian dalam menciptakan antarmuka yang user-friendly",
-                image: "/speaker-female.png"
+                image: "/speaker-female.webp"
             }
         ],
         agenda: [
@@ -76,7 +76,7 @@ const eventsData = {
                 role: "Mobile App Architect",
                 company: "Mobile Solutions Inc",
                 bio: "Expert dalam pengembangan aplikasi mobile cross-platform dengan Flutter dan React Native",
-                image: "/speaker-male.png"
+                image: "/speaker-male.webp"
             }
         ],
         agenda: [
@@ -114,7 +114,7 @@ const eventsData = {
                 role: "AI Research Scientist",
                 company: "Indonesian AI Institute",
                 bio: "Peneliti AI dengan fokus pada Natural Language Processing dan Computer Vision",
-                image: "/speaker-female.png"
+                image: "/speaker-female.webp"
             }
         ],
         agenda: [
@@ -152,7 +152,7 @@ const eventsData = {
                 role: "DevOps Engineer",
                 company: "Cloud Infrastructure Corp",
                 bio: "Specialist dalam cloud infrastructure dan automation dengan pengalaman 8+ tahun",
-                image: "/speaker-male.png"
+                image: "/speaker-male.webp"
             }
         ],
         agenda: [
