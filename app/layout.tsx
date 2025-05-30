@@ -1,29 +1,13 @@
 import { Inter } from 'next/font/google';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from "@vercel/analytics/next"
 
 import Navbar from './components/ui/navbar';
 import Footer from './components/ui/footer';
-import ClientProviders from './components/providers/ClientProviders';
+import ClientProviders, { ThemeProvider } from './components/providers/ClientProviders';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#FE6B8B',
-        },
-        secondary: {
-            main: '#FF8E53',
-        },
-    },
-    typography: {
-        fontFamily: inter.style.fontFamily,
-    },
-});
-
-// ✅ REMOVE 'use client' from layout
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="id">
@@ -120,7 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <link rel="dns-prefetch" href="https://vercel.live" />
 
                 {/* ✅ Preload Critical Resources */}
-                <link rel="preload" href="/logo.webp" as="image" type="image/webp" />
+                <link rel="preload" href="/logo/logo.webp" as="image" type="image/webp" />
                 <link rel="preload" href="/favicon/favicon.ico" as="image" type="image/x-icon" />
 
                 {/* ✅ Resource Hints */}
@@ -143,7 +127,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                                     "url": "https://karawangdev.vercel.app",
                                     "logo": {
                                         "@type": "ImageObject",
-                                        "url": "https://karawangdev.vercel.app/logo.webp",
+                                        "url": "https://karawangdev.vercel.app/logo/logo.webp",
                                         "width": 512,
                                         "height": 512
                                     },
@@ -266,10 +250,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <meta name="p:domain_verify" content="TAMBAHKAN_PINTEREST_CODE" />
             </head>
             <body className={inter.className}>
-                <ThemeProvider theme={theme}>
-                    <CssBaseline />
-
-                    {/* ✅ WRAP CLIENT-SIDE CODE */}
+                <ThemeProvider>
                     <ClientProviders>
                         <Navbar />
                         <main
@@ -283,10 +264,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         </main>
                         <Footer />
                     </ClientProviders>
-
                     <SpeedInsights />
+                    <Analytics />
                 </ThemeProvider>
             </body>
-        </html>
+        </html >
     );
 }

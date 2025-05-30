@@ -199,7 +199,7 @@ export default function EventsHeroSection() {
                     <Grid item xs={12} md={6} sx={{ textAlign: 'center' }}>
                         <motion.div
                             initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
+                            animate={{ scale: 1, opacity: 1, y: [0, -10, 0] }}
                             transition={{
                                 duration: 0.8,
                                 delay: 0.4,
@@ -211,9 +211,6 @@ export default function EventsHeroSection() {
                                     repeatType: "reverse"
                                 }
                             }}
-                            animate={{
-                                y: [0, -10, 0]
-                            }}
                         >
                             <Box
                                 sx={{
@@ -224,7 +221,7 @@ export default function EventsHeroSection() {
                                 }}
                             >
                                 <Image
-                                    src="/community-event.jpg"
+                                    src="/community-event.webp"
                                     alt="Event Komunitas Developer Karawang"
                                     fill
                                     style={{ objectFit: 'contain' }}

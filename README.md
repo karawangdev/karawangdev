@@ -119,7 +119,7 @@ karawangdev/
 │   └── layout.tsx           # Root layout
 ├── public/                  # Static assets
 │   ├── logo.jpg            # Community logo
-│   ├── events-placeHolder.png
+│   ├── events-placeHolder.webp
 │   └── speaker-*.png
 ├── next.config.ts          # Next.js configuration
 ├── package.json            # Dependencies

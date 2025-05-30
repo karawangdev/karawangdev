@@ -42,7 +42,7 @@ const upcomingEvents = [
         date: "15 Juni 2025",
         time: "10:00 - 14:00",
         location: "Karawang Digital Hub",
-        image: "/events-placeHolder.png",
+        image: "/events-placeHolder.webp",
         tags: ["Workshop", "Web Development", "React"]
     },
     {
@@ -52,7 +52,7 @@ const upcomingEvents = [
         date: "8-10 Juli 2025",
         time: "Mulai 09:00",
         location: "Tech Coworking Space, Karawang",
-        image: "/events-placeHolder.png",
+        image: "/events-placeHolder.webp",
         tags: ["Hackathon", "Mobile", "Flutter"]
     },
     {
@@ -62,7 +62,7 @@ const upcomingEvents = [
         date: "5 Agustus 2025",
         time: "13:00 - 17:00",
         location: "Online via Zoom",
-        image: "/events-placeHolder.png",
+        image: "/events-placeHolder.webp",
         tags: ["Seminar", "AI", "Machine Learning"]
     },
     {
@@ -72,7 +72,7 @@ const upcomingEvents = [
         date: "20 September 2025",
         time: "19:00 - 21:00",
         location: "Aula Universitas Karawang",
-        image: "/events-placeHolder.png",
+        image: "/events-placeHolder.webp",
         tags: ["Tech Talk", "DevOps", "CI/CD"]
     }
 ];
@@ -261,8 +261,6 @@ export default function UpcomingEventsSection() {
                                                     pb: 1.5,
                                                     fontSize: { xs: '1rem', md: '1.1rem' },
                                                     textAlign: 'center',
-                                                    display: '-webkit-box',
-                                                    WebkitLineClamp: 2,
                                                     WebkitBoxOrient: 'vertical',
                                                     overflow: 'hidden',
                                                     lineHeight: 1.3,
@@ -418,6 +416,6 @@ export default function UpcomingEventsSection() {
                     </motion.div>
                 </Box>
             </Container>
-        </Box>
+        </Box >
     );
 }

@@ -15,7 +15,7 @@
   - [✅] Convert images to WebP format for better performance
   - [ ] Implement responsive image loading
   - [ ] Add proper alt texts for accessibility
-  - [✅] Optimize placeholder images (`events-placeHolder.png`, `speaker-*.png`)
+  - [✅] Optimize placeholder images (`events-placeHolder.webp`, `speaker-*.png`)
 
 ## ⚡ Backend Development
 

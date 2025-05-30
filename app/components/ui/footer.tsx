@@ -86,7 +86,7 @@ const Footer = () => {
                             <motion.div variants={itemVariants}>
                                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                                     <Image
-                                        src="/logo.webp"
+                                        src="/logo/logo.webp"
                                         alt="KarawangDev Logo"
                                         width={50}
                                         height={50}
@@ -140,12 +140,14 @@ const Footer = () => {
                                     >
                                         <Box
                                             component={social.disabled ? "div" : "a"}
-                                            href={social.disabled ? undefined : social.url}
-                                            target={social.disabled ? undefined : "_blank"}
-                                            rel={social.disabled ? undefined : "noopener noreferrer"}
-                                            aria-label={social.label} // ✅ Add descriptive aria-label
-                                            role={social.disabled ? "button" : undefined} // ✅ Add role for disabled items
-                                            aria-disabled={social.disabled ? "true" : undefined} // ✅ Mark disabled items
+                                            {...(social.disabled ? {} : {
+                                                href: social.url,
+                                                target: "_blank",
+                                                rel: "noopener noreferrer"
+                                            })}
+                                            aria-label={social.label}
+                                            role={social.disabled ? "button" : undefined}
+                                            aria-disabled={social.disabled ? "true" : undefined}
                                             sx={{
                                                 color: social.disabled ? 'rgba(255,255,255,0.3)' : 'white',
                                                 mr: 2,
@@ -163,7 +165,6 @@ const Footer = () => {
                                                     bgcolor: 'rgba(254, 107, 139, 0.3)',
                                                     boxShadow: '0 0 15px rgba(254, 107, 139, 0.5)'
                                                 },
-                                                // ✅ Add focus styles for keyboard navigation
                                                 '&:focus': {
                                                     outline: '2px solid #0093E9',
                                                     outlineOffset: '2px'

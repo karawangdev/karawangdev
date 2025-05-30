@@ -42,7 +42,7 @@ const pastEvents = [
         title: "Workshop Dasar JavaScript",
         description: "Memahami konsep inti dan praktik JavaScript modern",
         date: "20 April 2025",
-        image: "/events-placeHolder.png",
+        image: "/events-placeHolder.webp",
         attendees: 78,
         tags: ["Workshop", "JavaScript", "Pemula"]
     },
@@ -51,7 +51,7 @@ const pastEvents = [
         title: "Pengantar Pengembangan Blockchain",
         description: "Mempelajari dasar-dasar teknologi blockchain dan pengembangan",
         date: "5 Maret 2025",
-        image: "/events-placeHolder.png",
+        image: "/events-placeHolder.webp",
         attendees: 45,
         tags: ["Workshop", "Blockchain", "Web3"]
     },
@@ -60,7 +60,7 @@ const pastEvents = [
         title: "Konferensi Cloud Computing",
         description: "Mengeksplorasi arsitektur cloud modern dan strategi deployment",
         date: "12 Februari 2025",
-        image: "/events-placeHolder.png",
+        image: "/events-placeHolder.webp",
         attendees: 120,
         tags: ["Konferensi", "Cloud", "DevOps"]
     },
@@ -69,7 +69,7 @@ const pastEvents = [
         title: "Prinsip Desain UI/UX",
         description: "Best practices untuk membuat antarmuka yang ramah pengguna",
         date: "25 Januari 2025",
-        image: "/events-placeHolder.png",
+        image: "/events-placeHolder.webp",
         attendees: 55,
         tags: ["Workshop", "Desain", "UI/UX"]
     }
@@ -262,8 +262,6 @@ export default function PastEventsSection() {
                                                     pb: 1.5,
                                                     fontSize: { xs: '1rem', md: '1.1rem' },
                                                     textAlign: 'center',
-                                                    display: '-webkit-box',
-                                                    WebkitLineClamp: 2,
                                                     WebkitBoxOrient: 'vertical',
                                                     overflow: 'hidden',
                                                     lineHeight: 1.3,

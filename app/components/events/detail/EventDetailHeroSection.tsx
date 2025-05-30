@@ -289,7 +289,7 @@ export default function EventDetailHeroSection({ event }: { event: any }) {
                                 }}
                             >
                                 <Image
-                                    src={event.image || "/events-placeHolder.png"}
+                                    src={event.image || "/events-placeHolder.webp"}
                                     alt={event.title}
                                     fill
                                     style={{ objectFit: 'cover' }}

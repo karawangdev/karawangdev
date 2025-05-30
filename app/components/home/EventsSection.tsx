@@ -38,19 +38,19 @@ export default function EventsSection() {
         {
             title: 'Workshop Pengembangan Web',
             date: '15 Juni 2025',
-            image: '/events-placeHolder.png',
+            image: '/events-placeHolder.webp',
             description: 'Pelajari teknik pengembangan web modern dengan React dan Next.js'
         },
         {
             title: 'Tech Talk: AI dan Machine Learning',
             date: '2 Juli 2025',
-            image: '/events-placeHolder.png',
+            image: '/events-placeHolder.webp',
             description: 'Menjelajahi kemajuan terbaru dalam bidang kecerdasan buatan'
         },
         {
             title: 'Hackathon 2025',
             date: '10-11 Agustus 2025',
-            image: '/events-placeHolder.png',
+            image: '/events-placeHolder.webp',
             description: 'Kompetisi coding 48 jam dengan hadiah yang menarik'
         }
     ];

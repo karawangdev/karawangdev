@@ -45,7 +45,7 @@ export default function HeroSection() {
                                     }}
                                 >
                                     <Image
-                                        src="/logo.webp"
+                                        src="/logo/logo.webp"
                                         alt="Karawang Dev Logo"
                                         fill
                                         style={{ objectFit: 'contain' }}
@@ -130,7 +130,7 @@ export default function HeroSection() {
                                 }}
                             >
                                 <Image
-                                    src="/logo.webp"
+                                    src="/logo/logo.webp"
                                     alt="Karawang Developer Community"
                                     fill
                                     style={{ objectFit: 'contain' }}
@@ -286,7 +286,7 @@ export default function HeroSection() {
                                     }}
                                 >
                                     <Image
-                                        src="/logo.webp"
+                                        src="/logo/logo.webp"
                                         alt="Karawang Dev Logo"
                                         fill
                                         style={{ objectFit: 'contain' }}
@@ -410,7 +410,7 @@ export default function HeroSection() {
                                     }}
                                 >
                                     <Image
-                                        src="/logo.webp"
+                                        src="/logo/logo.webp"
                                         alt="Karawang Dev Logo"
                                         fill
                                         style={{ objectFit: 'contain' }}
@@ -516,20 +516,51 @@ export default function HeroSection() {
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ duration: 0.8, delay: 0.8, type: 'spring' }}
                         >
+                            {/* Perbaikan untuk image community-story.webp */}
                             <Box
                                 sx={{
                                     position: 'relative',
-                                    height: { xs: 300, md: 400 },
-                                    width: '100%',
-                                    filter: 'drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.15))'
+                                    height: { xs: 220, md: 280 }, // Dikurangi dari 300/400 ke 220/280
+                                    width: { xs: '80%', md: '85%' }, // Dikurangi dari 100% ke 80%/85%
+                                    mx: 'auto', // Center horizontally
+                                    mt: { xs: 4, md: 2 }, // Margin top untuk jarak dengan text
+                                    mb: { xs: 2, md: 0 }, // Margin bottom untuk mobile
+                                    borderRadius: '20px',
+                                    overflow: 'hidden',
+                                    filter: 'drop-shadow(0px 10px 30px rgba(0, 0, 0, 0.1))',
+                                    '&:hover': {
+                                        transform: 'translateY(-5px)',
+                                        transition: 'transform 0.3s ease'
+                                    }
                                 }}
                             >
                                 <Image
-                                    src="/logo.webp"
+                                    src="/community-story.webp"
                                     alt="Karawang Developer Community"
                                     fill
-                                    style={{ objectFit: 'contain' }}
+                                    style={{
+                                        objectFit: 'cover',
+                                        objectPosition: 'center center'
+                                    }}
                                     priority
+                                    sizes="(max-width: 768px) 80vw, 42vw" // Sesuaikan dengan width baru
+                                />
+
+                                {/* Overlay gradient untuk efek visual */}
+                                <Box
+                                    sx={{
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        right: 0,
+                                        bottom: 0,
+                                        background: 'linear-gradient(45deg, rgba(0,147,233,0.1) 0%, rgba(254,107,139,0.1) 100%)',
+                                        opacity: 0,
+                                        transition: 'opacity 0.3s ease',
+                                        '&:hover': {
+                                            opacity: 1
+                                        }
+                                    }}
                                 />
                             </Box>
                         </motion.div>

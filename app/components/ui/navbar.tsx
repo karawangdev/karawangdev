@@ -87,27 +87,6 @@ export default function Navbar() {
             animate={{ y: 0 }}
             transition={{ duration: 0.5 }}
         >
-            <Box
-                component="a"
-                href="#main-content"
-                sx={{
-                    position: 'absolute',
-                    left: '-9999px',
-                    top: '8px',
-                    zIndex: 9999,
-                    padding: '8px 16px',
-                    background: '#0093E9',
-                    color: 'white',
-                    textDecoration: 'none',
-                    borderRadius: '4px',
-                    fontWeight: 600,
-                    '&:focus': {
-                        left: '8px'
-                    }
-                }}
-            >
-                Skip to main content
-            </Box>
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{ py: { xs: 1, md: 1.2 } }}>
                     {/* Desktop Logo */}
@@ -124,7 +103,7 @@ export default function Navbar() {
                     >
                         <Link href="/" passHref style={{ display: 'flex', alignItems: 'center' }}>
                             <Image
-                                src="/logo.webp"
+                                src="/logo/logo.webp"
                                 alt="Karawang Dev Logo"
                                 width={45}
                                 height={45}
@@ -335,7 +314,7 @@ export default function Navbar() {
                     <Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1.5 }}>
                         <Link href="/" passHref style={{ display: 'flex', alignItems: 'center' }}>
                             <Image
-                                src="/logo.webp"
+                                src="/logo/logo.webp"
                                 alt="Karawang Dev Logo"
                                 width={36}
                                 height={36}
@@ -468,7 +447,6 @@ export default function Navbar() {
                             component={Link}
                             href="/join"
                             startIcon={<PeopleIcon />}
-                            aria-label="Join KarawangDev community" // ✅ Add descriptive aria-label
                             sx={{
                                 borderRadius: '14px',
                                 px: 2.5,
@@ -484,11 +462,6 @@ export default function Navbar() {
                                     background: 'linear-gradient(45deg, #FF8E53 30%, #FE6B8B 90%)',
                                     transform: 'translateY(-3px) scale(1.03)',
                                     boxShadow: '0 8px 20px rgba(254, 107, 139, 0.4)'
-                                },
-                                // ✅ Add focus styles
-                                '&:focus': {
-                                    outline: '3px solid rgba(254, 107, 139, 0.5)',
-                                    outlineOffset: '2px'
                                 },
                                 transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                             }}

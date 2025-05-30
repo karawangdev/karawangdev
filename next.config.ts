@@ -12,10 +12,15 @@ const nextConfig: NextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    domains: ['karawangdev.vercel.app'],
+    // ✅ Tambahkan localhost untuk development
+    domains: ['localhost', 'karawangdev.vercel.app'],
     minimumCacheTTL: 31536000, // 1 year
+    // ✅ Tambahkan untuk debug
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  output: 'standalone',
+  // ✅ Hanya untuk production
+  output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
   trailingSlash: true,
   experimental: {
     optimizeCss: true,
@@ -32,6 +37,11 @@ const nextConfig: NextConfig = {
             key: 'x-forwarded-proto',
             value: 'http',
           },
+          // ✅ Exclude localhost dari redirect
+          {
+            type: 'host',
+            value: '(?!localhost).*',
+          },
         ],
         destination: 'https://karawangdev.vercel.app/:path*',
         permanent: true,
@@ -43,10 +53,11 @@ const nextConfig: NextConfig = {
       {
         source: '/(.*)',
         headers: [
-          {
+          // ✅ Conditional HSTS - hanya untuk production
+          ...(process.env.NODE_ENV === 'production' ? [{
             key: 'Strict-Transport-Security',
             value: 'max-age=31536000; includeSubDomains; preload'
-          },
+          }] : []),
           {
             key: 'X-Frame-Options',
             value: 'DENY'
