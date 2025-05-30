@@ -126,39 +126,47 @@ const Footer = () => {
                             {/* Fixed Social Links - Disable Facebook and Twitter */}
                             <Box sx={{ display: 'flex', mt: 2 }}>
                                 {[
-                                    { icon: <Facebook />, url: null, i: 0, disabled: true }, // ✅ Nonaktifkan Facebook
-                                    { icon: <Twitter />, url: null, i: 1, disabled: true }, // ✅ Nonaktifkan Twitter
-                                    { icon: <Instagram />, url: 'https://instagram.com/karawangdev', i: 2, disabled: false },
-                                    { icon: <LinkedIn />, url: 'https://linkedin.com/company/karawangdev', i: 3, disabled: false },
-                                    { icon: <GitHub />, url: 'https://github.com/karawangdev', i: 4, disabled: false }
+                                    { icon: <Facebook />, url: null, i: 0, disabled: true, label: 'Facebook (Coming Soon)' },
+                                    { icon: <Twitter />, url: null, i: 1, disabled: true, label: 'Twitter (Coming Soon)' },
+                                    { icon: <Instagram />, url: 'https://instagram.com/karawangdev', i: 2, disabled: false, label: 'Follow KarawangDev on Instagram' },
+                                    { icon: <LinkedIn />, url: 'https://linkedin.com/company/karawangdev', i: 3, disabled: false, label: 'Connect with KarawangDev on LinkedIn' },
+                                    { icon: <GitHub />, url: 'https://github.com/karawangdev', i: 4, disabled: false, label: 'View KarawangDev projects on GitHub' }
                                 ].map((social) => (
                                     <motion.div
                                         key={social.i}
                                         variants={socialIconVariants}
                                         custom={social.i}
-                                        whileHover={social.disabled ? undefined : "hover"} // ✅ Disable hover jika disabled
+                                        whileHover={social.disabled ? undefined : "hover"}
                                     >
                                         <Box
-                                            component={social.disabled ? "div" : "a"} // ✅ Gunakan div jika disabled
-                                            href={social.disabled ? undefined : social.url} // ✅ No href jika disabled
+                                            component={social.disabled ? "div" : "a"}
+                                            href={social.disabled ? undefined : social.url}
                                             target={social.disabled ? undefined : "_blank"}
                                             rel={social.disabled ? undefined : "noopener noreferrer"}
+                                            aria-label={social.label} // ✅ Add descriptive aria-label
+                                            role={social.disabled ? "button" : undefined} // ✅ Add role for disabled items
+                                            aria-disabled={social.disabled ? "true" : undefined} // ✅ Mark disabled items
                                             sx={{
-                                                color: social.disabled ? 'rgba(255,255,255,0.3)' : 'white', // ✅ Warna lebih redup jika disabled
+                                                color: social.disabled ? 'rgba(255,255,255,0.3)' : 'white',
                                                 mr: 2,
                                                 display: 'flex',
                                                 alignItems: 'center',
                                                 justifyContent: 'center',
                                                 p: 1,
                                                 borderRadius: '50%',
-                                                bgcolor: social.disabled ? 'rgba(255,255,255,0.02)' : 'rgba(255,255,255,0.05)', // ✅ Background lebih redup
+                                                bgcolor: social.disabled ? 'rgba(255,255,255,0.02)' : 'rgba(255,255,255,0.05)',
                                                 transition: 'all 0.3s',
                                                 textDecoration: 'none',
-                                                cursor: social.disabled ? 'not-allowed' : 'pointer', // ✅ Cursor not-allowed
-                                                opacity: social.disabled ? 0.5 : 1, // ✅ Opacity lebih rendah
-                                                '&:hover': social.disabled ? {} : { // ✅ No hover effect jika disabled
+                                                cursor: social.disabled ? 'not-allowed' : 'pointer',
+                                                opacity: social.disabled ? 0.5 : 1,
+                                                '&:hover': social.disabled ? {} : {
                                                     bgcolor: 'rgba(254, 107, 139, 0.3)',
                                                     boxShadow: '0 0 15px rgba(254, 107, 139, 0.5)'
+                                                },
+                                                // ✅ Add focus styles for keyboard navigation
+                                                '&:focus': {
+                                                    outline: '2px solid #0093E9',
+                                                    outlineOffset: '2px'
                                                 }
                                             }}
                                         >

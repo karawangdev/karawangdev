@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:turbo": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "audit": "npm audit --audit-level=moderate",
+    "security-check": "npm audit && npm outdated"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

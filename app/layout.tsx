@@ -14,6 +14,7 @@ import ScrollToTopButton from './components/ui/ScrollToTopButton';
 import InteractiveTerminal from './components/ui/InteractiveTerminal';
 import CommunityAnalytics from './components/analytics/CommunityAnalytics';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import SecurityHeaders from './components/security/SecurityHeaders';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -286,6 +287,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <ErrorBoundary>
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
+
+                        {/* ✅ Add Security Headers Component */}
+                        <SecurityHeaders />
 
                         {/* ✅ Wrap Analytics in Suspense */}
                         <Suspense fallback={null}>

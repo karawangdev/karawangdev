@@ -66,7 +66,7 @@ export default function AboutSection() {
             sx={{
                 py: 10,
                 fontFamily: montserratFont,
-                backgroundColor: '#f8fafc', // Tambahkan background abu-abu terang
+                backgroundColor: '#f8fafc',
                 minHeight: '100vh'
             }}
         >
@@ -80,7 +80,7 @@ export default function AboutSection() {
 
                 <Grid
                     container
-                    spacing={3} // Tambah spacing
+                    spacing={3}
                     sx={{ mt: 2 }}
                     justifyContent="center"
                     alignItems="stretch"
@@ -111,8 +111,8 @@ export default function AboutSection() {
                                 <Paper
                                     elevation={0}
                                     sx={{
-                                        width: '280px', // Ukuran lebar tetap
-                                        height: '320px', // Ukuran tinggi tetap
+                                        width: '280px',
+                                        height: '320px',
                                         p: 3,
                                         minWidth: 0,
                                         maxWidth: '100%',
@@ -120,8 +120,8 @@ export default function AboutSection() {
                                         borderRadius: '20px',
                                         transition: 'all 0.3s ease',
                                         border: '1px solid rgba(0, 147, 233, 0.1)',
-                                        backgroundColor: '#ffffff', // Background putih untuk kontras
-                                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)', // Shadow halus
+                                        backgroundColor: '#ffffff',
+                                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
                                         '&:hover': {
                                             boxShadow: '0 15px 40px rgba(0, 147, 233, 0.15)',
                                             transform: 'translateY(-5px)',
@@ -133,7 +133,7 @@ export default function AboutSection() {
                                         justifyContent: 'flex-start',
                                         overflow: 'hidden',
                                         flex: 1,
-                                        mx: 'auto' // Center kotak
+                                        mx: 'auto'
                                     }}
                                 >
                                     {/* Icon Area */}
@@ -153,6 +153,7 @@ export default function AboutSection() {
                                                 fontSize: '1.8rem'
                                             }
                                         }}
+                                        aria-hidden="true" // ✅ Hide decorative icon from screen readers
                                     >
                                         {item.icon}
                                     </Box>
@@ -171,9 +172,10 @@ export default function AboutSection() {
                                             flexShrink: 0
                                         }}
                                     >
+                                        {/* ✅ Fix: Change from h6 to h3 for proper hierarchy */}
                                         <Typography
                                             variant="h6"
-                                            component="h3"
+                                            component="h3" // ✅ Use h3 for semantic structure
                                             fontWeight="bold"
                                             sx={{
                                                 fontFamily: montserratFont,
@@ -204,6 +206,7 @@ export default function AboutSection() {
                                                     background: 'linear-gradient(90deg, rgba(0,147,233,0) 0%, rgba(0,147,233,0.3) 50%, rgba(0,147,233,0) 100%)',
                                                     borderRadius: '2px',
                                                 }}
+                                                aria-hidden="true" // ✅ Hide decorative element
                                             />
                                         </Typography>
                                     </Box>

@@ -297,35 +297,35 @@ export default function InteractiveTerminal() {
                                         <IconButton
                                             size="small"
                                             onClick={handleCopy}
+                                            aria-label={copied ? "Terminal content copied" : "Copy terminal content"} // Add this
                                             sx={{
                                                 color: 'rgba(255, 255, 255, 0.7)',
                                                 '&:hover': { color: 'rgba(255, 255, 255, 0.9)' }
                                             }}
-                                            title="Copy terminal output"
                                         >
                                             {copied ? <DoneIcon fontSize="small" /> : <ContentCopyIcon fontSize="small" />}
                                         </IconButton>
                                         <IconButton
                                             size="small"
                                             onClick={() => setExpanded(!expanded)}
+                                            aria-label={expanded ? "Reduce terminal size" : "Expand terminal"} // Add this
                                             sx={{
                                                 color: 'rgba(255, 255, 255, 0.7)',
                                                 '&:hover': { color: 'rgba(255, 255, 255, 0.9)' },
                                                 ml: 1
                                             }}
-                                            title={expanded ? "Reduce size" : "Expand terminal"}
                                         >
                                             {expanded ? <CloseFullscreenIcon fontSize="small" /> : <OpenInFullIcon fontSize="small" />}
                                         </IconButton>
                                         <IconButton
                                             size="small"
                                             onClick={handleClose}
+                                            aria-label="Close terminal" // Add this
                                             sx={{
                                                 color: 'rgba(255, 255, 255, 0.7)',
                                                 '&:hover': { color: '#FF5F56' },
                                                 ml: 1
                                             }}
-                                            title="Close terminal"
                                         >
                                             <CloseIcon fontSize="small" />
                                         </IconButton>

@@ -71,8 +71,8 @@ export default function Navbar() {
             elevation={0}
             sx={{
                 background: trigger
-                    ? 'rgba(255, 255, 255, 0.85)'
-                    : 'rgba(255, 255, 255, 0.65)',
+                    ? 'rgba(255, 255, 255, 0.95)' // ✅ Increased opacity for better contrast
+                    : 'rgba(255, 255, 255, 0.85)', // ✅ Increased opacity
                 backdropFilter: 'blur(15px) saturate(180%)',
                 boxShadow: trigger
                     ? '0 10px 30px -10px rgba(0, 0, 0, 0.08)'
@@ -80,13 +80,34 @@ export default function Navbar() {
                 color: '#333',
                 transition: 'all 0.4s cubic-bezier(0.65, 0, 0.35, 1)',
                 borderBottom: trigger ? 'none' : '1px solid rgba(0, 0, 0, 0.05)',
-                fontFamily: montserratFont, // Apply Montserrat to entire AppBar
+                fontFamily: montserratFont,
             }}
             component={motion.nav}
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.5 }}
         >
+            <Box
+                component="a"
+                href="#main-content"
+                sx={{
+                    position: 'absolute',
+                    left: '-9999px',
+                    top: '8px',
+                    zIndex: 9999,
+                    padding: '8px 16px',
+                    background: '#0093E9',
+                    color: 'white',
+                    textDecoration: 'none',
+                    borderRadius: '4px',
+                    fontWeight: 600,
+                    '&:focus': {
+                        left: '8px'
+                    }
+                }}
+            >
+                Skip to main content
+            </Box>
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{ py: { xs: 1, md: 1.2 } }}>
                     {/* Desktop Logo */}
@@ -121,7 +142,7 @@ export default function Navbar() {
                         href="/"
                         sx={{
                             mr: 3,
-                            color: '#000',
+                            color: '#1a1a1a', // ✅ Darker color for better contrast
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: montserratFont,
                             fontWeight: 500,
@@ -137,17 +158,23 @@ export default function Navbar() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
-                            aria-label="navigation menu"
+                            aria-label="Open navigation menu" // ✅ More descriptive aria-label
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
                             color="inherit"
                             sx={{
-                                border: '1px solid rgba(0, 0, 0, 0.08)',
+                                border: '1px solid rgba(0, 0, 0, 0.12)', // ✅ Slightly more visible border
                                 borderRadius: '12px',
                                 p: 1,
+                                color: '#2c2c2c', // ✅ Darker icon color
                                 '&:hover': {
                                     backgroundColor: 'rgba(0, 147, 233, 0.08)'
+                                },
+                                // ✅ Add focus styles
+                                '&:focus': {
+                                    outline: '2px solid #0093E9',
+                                    outlineOffset: '2px'
                                 }
                             }}
                         >
@@ -202,9 +229,19 @@ export default function Navbar() {
                                 <IconButton
                                     size="small"
                                     onClick={handleCloseNavMenu}
+                                    aria-label="Close navigation menu" // ✅ Add aria-label
                                     sx={{
-                                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                                        '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.08)' }
+                                        backgroundColor: 'rgba(0, 0, 0, 0.06)', // ✅ Slightly more visible
+                                        color: '#2c2c2c', // ✅ Darker color
+                                        '&:hover': {
+                                            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                                            color: '#0093E9'
+                                        },
+                                        // ✅ Add focus styles
+                                        '&:focus': {
+                                            outline: '2px solid #0093E9',
+                                            outlineOffset: '2px'
+                                        }
                                     }}
                                 >
                                     <CloseIcon fontSize="small" />
@@ -238,7 +275,7 @@ export default function Navbar() {
                                             width: '100%',
                                             alignItems: 'center',
                                             textDecoration: 'none',
-                                            color: isActive(page.href) ? '#0093E9' : '#333',
+                                            color: isActive(page.href) ? '#0093E9' : '#2c2c2c', // ✅ Darker text for better contrast
                                             fontWeight: isActive(page.href) ? 600 : 500,
                                             fontFamily: montserratFont, // Apply Montserrat to links
                                         }}>
@@ -313,7 +350,7 @@ export default function Navbar() {
                         href="/"
                         sx={{
                             mr: 2,
-                            color: '#000',
+                            color: '#1a1a1a', // ✅ Darker color for better contrast
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
                             fontFamily: montserratFont,
@@ -340,11 +377,12 @@ export default function Navbar() {
                                     component={Link}
                                     href={page.href}
                                     onClick={handleCloseNavMenu}
+                                    aria-label={`Navigate to ${page.name} page`} // ✅ Add aria-label for accessibility
                                     sx={{
                                         px: 2.5,
                                         py: 1,
                                         mx: 0.5,
-                                        color: isActive(page.href) ? '#0093E9' : '#555',
+                                        color: isActive(page.href) ? '#0093E9' : '#2c2c2c', // ✅ Darker text for better contrast
                                         fontWeight: isActive(page.href) ? 600 : 500,
                                         borderRadius: '12px',
                                         position: 'relative',
@@ -353,12 +391,17 @@ export default function Navbar() {
                                         fontSize: '0.95rem',
                                         textTransform: 'none',
                                         letterSpacing: '0.3px',
-                                        backgroundColor: isActive(page.href) ? 'rgba(0, 147, 233, 0.08)' : 'transparent',
-                                        fontFamily: montserratFont, // Apply Montserrat to buttons
+                                        backgroundColor: isActive(page.href) ? 'rgba(0, 147, 233, 0.12)' : 'transparent', // ✅ Slightly more opaque background
+                                        fontFamily: montserratFont,
                                         '&:hover': {
-                                            backgroundColor: 'rgba(0, 147, 233, 0.05)',
+                                            backgroundColor: 'rgba(0, 147, 233, 0.08)',
                                             transform: 'translateY(-3px)',
                                             color: '#0093E9'
+                                        },
+                                        // ✅ Add focus styles for keyboard navigation
+                                        '&:focus': {
+                                            outline: '2px solid #0093E9',
+                                            outlineOffset: '2px'
                                         }
                                     }}
                                 >
@@ -425,6 +468,7 @@ export default function Navbar() {
                             component={Link}
                             href="/join"
                             startIcon={<PeopleIcon />}
+                            aria-label="Join KarawangDev community" // ✅ Add descriptive aria-label
                             sx={{
                                 borderRadius: '14px',
                                 px: 2.5,
@@ -440,6 +484,11 @@ export default function Navbar() {
                                     background: 'linear-gradient(45deg, #FF8E53 30%, #FE6B8B 90%)',
                                     transform: 'translateY(-3px) scale(1.03)',
                                     boxShadow: '0 8px 20px rgba(254, 107, 139, 0.4)'
+                                },
+                                // ✅ Add focus styles
+                                '&:focus': {
+                                    outline: '3px solid rgba(254, 107, 139, 0.5)',
+                                    outlineOffset: '2px'
                                 },
                                 transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
                             }}
